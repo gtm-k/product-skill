@@ -27,4 +27,4 @@ No warranties are given. The license may not give you all of the permissions nec
 
 Full license text: <https://creativecommons.org/licenses/by-sa/4.0/legalcode>
 
-Copyright (c) 2026 Gowtham Kethineedi
+Copyright (c) 2026 Gowtham Kethineedi <product-skill.zero675@passmail.com>
