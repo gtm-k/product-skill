@@ -7,7 +7,7 @@ description: >-
   product-led growth, market analysis, business cases, feature specs, launch plans, metrics frameworks,
   product vision, team leadership, organizational design, or any product decision-making.
   Provides calibrated confidence levels and explicit reasoning biases with every output.
-license: MIT
+license: CC BY-SA 4.0
 metadata:
   author: product-management-mastery
   version: '3.0'
