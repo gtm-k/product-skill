@@ -229,6 +229,15 @@ Under the following terms:
 ## Changelog
 
 ### v3.0 (March 2026)
+- Initial public release
+- 30+ frameworks covering strategy, discovery, prioritization, metrics, organizational design, execution, and decision-making
+- Role-calibrated responses across the full PM career ladder (Analyst through CPO/CEO)
+- Confidence calibration system with 5 levels and 5-dimension bias disclosures
+- Industry-specific calibration for B2B SaaS, B2C, fintech, healthcare, marketplace, hardware, and AI/ML
+- Communication templates: PRD, Product Strategy, OKRs, Product Business Plan
+- AI-era product management section covering AI PM skills and workflows
+- Career development framework with skills matrix
+- Tested and validated across 6 scenarios (8.9/10 overall score)
 
 ---
 

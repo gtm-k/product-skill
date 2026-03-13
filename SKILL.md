@@ -1,5 +1,5 @@
 ---
-name: product-management-mastery
+name: product-skill
 description: >-
   Comprehensive product management skill covering the full career spectrum from Product Analyst to CPO/CEO.
   Use when asked to perform any product management task including: product strategy, roadmapping, prioritization,
@@ -9,7 +9,7 @@ description: >-
   Provides calibrated confidence levels and explicit reasoning biases with every output.
 license: CC BY-SA 4.0
 metadata:
-  author: product-management-mastery
+  author: Gowtham Kethineedi
   version: '3.0'
   sources: 'SVPG (Cagan), Teresa Torres, Shreyas Doshi, Melissa Perri, Gibson Biddle, Lenny Rachitsky, Ken Norton, Clayton Christensen, Klaus Aumayr, Dave McClure, academic research'
 ---
