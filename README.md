@@ -13,6 +13,7 @@ Upload this single file to your AI assistant, and it gains expert-level product 
 ## Table of Contents
 
 - [What Is This?](#what-is-this)
+- [Manage Your Skills with skill-forge](#-manage-your-skills-with-skill-forge)
 - [What's Included](#whats-included)
 - [Frameworks Covered](#frameworks-covered)
 - [How to Use](#how-to-use)
@@ -38,6 +39,24 @@ An **AI skill file** is a structured knowledge document that you upload to an AI
 - **Communication templates** (PRDs, strategy docs, OKRs, business plans)
 - **Anti-patterns and failure modes** to avoid common PM mistakes
 - **Career development framework** with a skills matrix from APM to CPO
+
+---
+
+## 🔧 Manage Your Skills with skill-forge
+
+Once you have this skill file (and others), you'll want a great way to organize, edit, and manage them. Check out **[skill-forge](https://github.com/gtm-k/skill-forge)** — a zero-install, single-file HTML app purpose-built for AI agent skill management.
+
+[![skill-forge](https://img.shields.io/badge/skill--forge-Skill%20Manager-blueviolet?logo=github)](https://github.com/gtm-k/skill-forge)
+
+**skill-forge gives you:**
+- A visual library to browse, search, and organize all your skills as cards
+- A guided 5-step wizard to create new skills — no YAML knowledge needed
+- A split-pane pro editor with live preview and real-time validation
+- A quality scorer (0–100) across 6 dimensions
+- Works with Claude, ChatGPT, Cursor, GitHub Copilot, and more
+- **Zero dependencies. No install. Fully offline.**
+
+👉 [Download skill-forge on GitHub](https://github.com/gtm-k/skill-forge)
 
 ---
 
