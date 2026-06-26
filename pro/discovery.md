@@ -154,4 +154,23 @@ AI accelerates synthesis but is a research *assistant*, not the researcher — u
 - **Decompose the prompt.** A monolithic "do my user research / find the insights" prompt buries failures. Break it into narrow steps (extract verbatim pains → cluster → phrase as needs) you can inspect at each stage.
 - **Run the error-analysis loop** like eval traces: read AI outputs → code where it failed → fix the prompt → re-run (→ §AI-Native / PRO: ai-evals).
 - **Verify against raw transcripts, never the AI's summary.** The summary is where hallucinated or flattened insight enters; the transcript is the evidence. Same rule as §2 note-taking — interpretation is always checked against source.
+
+---
+
+## 10. Quality Function Deployment — the House of Quality (Hauser & Clausing, "The House of Quality," HBR May 1988)
+**Use when** discovery has produced *ranked* customer needs and you must convert them into a measurable spec, set target values, and arbitrate cross-functional trade-offs *before* build. The bridge from §2 interviews (voice of the customer) to §Templates (engineering targets that survive the handoff). Kano (§Prioritization) *categorizes* features; QFD *translates* them into specs and trade-offs — a different job. *(Originated 1972 at Mitsubishi's Kobe shipyard; early use cut Toyota Auto Body startup/preproduction cost >60% between 1977 and 1984.)*
+
+**The house — six rooms (build left wall → right wall → ceiling → body → roof → basement):**
+1. **Left wall — Customer Attributes:** the needs in the customer's *own words* ("easy to close," "no road noise"); 30-100 of them, grouped into bundles. Preserve the clichés — your paraphrase mistranslates worse than their vague word does. Fold in regulators, retailers, vendors, not just end-users.
+2. **Right wall — importance + competitive benchmark:** a relative weight per attribute **and** how customers rate you vs competitors. This wall *is* a perceptual map (→ §GTM positioning): an attribute where *everyone* is weak = an opportunity; one where you already lead = defend, don't over-invest.
+3. **Ceiling — Engineering Characteristics:** the "hows" in measurable units. Rule: an EC must be **measurable AND directly felt by the customer** (door *weight* is an EC; sheet-metal *thickness* is a part characteristic the customer never perceives — it belongs in the next house).
+4. **Body — relationship matrix:** strength of each EC↔attribute link, by consensus. Two free diagnostics: an EC linked to *no* attribute is redundant (or you missed a need); an attribute linked to *no* EC is product whitespace.
+5. **Roof — the EC×EC trade-off grid. The most critical room:** what moves *collaterally* when you change one EC (reducing door-close energy is negatively related to seal resistance and road-noise). Surfaces engineering trade-offs on paper instead of in production — sometimes the right call is to leave a target alone.
+6. **Basement — targets:** set each as a **customer-satisfaction value, not a tolerance** — "**7.5 ft-lb**," not "between 6 and 8" (tolerance language rewards drift to the cheapest end of the band).
+
+**Arbitrate, don't average** (the article's car-door example): doors harder to close than competitors' + that attribute is important + the roof shows the fix drags other specs → marketing + engineering + GM jointly decide the benefit wins → target 7.5 ft-lb; meanwhile "no road noise" is mildly important, we already lead, and the fix hurts higher-priority attributes → *don't touch it*. Same chart, opposite calls — driven by importance × competitive position × roof trade-off, not gut. **Cascade:** the "hows" of one house become the "whats" of the next (product → parts → process → production), so the customer's voice can't drift across handoffs.
+
+**Software translation:** customer attributes = the ranked opportunities off the OST (§3); ECs = measurable system behaviors (p95 latency, time-to-first-value, error rate); the roof = architecture trade-offs (cache freshness vs write cost; recall vs precision). The discipline that ports: **set targets as satisfaction values, not ranges, and surface the roof trade-off *before* committing the spec** — most "the feature shipped but something else got worse" misses are unmapped roof effects.
+
+**When NOT to draw the full house:** it's heavy — reserve the full grid for multi-team, high-coordination, expensive-to-change builds (hardware, regulated, platform); for a small reversible software bet, borrow the relationship-matrix *thinking* (which spec serves which ranked need, what it trades against) without drawing the chart. **Confidence: HIGH** (canonical HBR; figures verbatim from the article).
 ===== END PRO: DISCOVERY =====

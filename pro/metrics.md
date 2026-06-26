@@ -140,4 +140,19 @@ The §1 North Star tree factors *customer* value into movable product inputs. Th
 Two tests, **both required: significant value impact AND controllable.** Most ops lists fail because "every operating factor is treated as equally important" (L.E.K.).
 
 **Tie-off:** assign each surviving driver an owner by type — *growth* → marketing/sales, *efficiency* → ops, *financial* (capital/WACC) → finance — and substitute value drivers into the performance/incentive system, **tailored by function**. Re-run sensitivity when the cost/revenue structure shifts — the ranking is point-in-time.
+
+---
+
+## 10. R&D-portfolio meta-metrics — platform efficiency & leverage (Meyer, Tertzakian & Utterback, MIT WP #124-95, 1995)
+**Use when** you manage R&D across an *evolving product family* (a platform + its derivatives) and the call is *when to renew the architecture*, *how to benchmark engineering groups*, or *how to allocate R&D across families* — not single-project tracking. The default R&D metric, "slip" (plan vs actual), only grades forecasting; it says nothing about whether the *architecture* is paying off. These two ratios read the family, not the project, and need no accurate up-front estimate.
+
+**The two ratios.**
+- **Platform Efficiency `E = R&D cost of a follow-on product ÷ R&D cost of the platform`.** What fraction of the platform's build cost does each derivative cost? **≤ ~0.10** ("ten cents on the platform dollar") = a strong, reusable architecture; **rising toward 1.0** = a derivative costs what the platform did → the platform isn't leveraging (poor design). If learning is real, E should *fall* across successive derivatives; a *rising* E is the warning. *(A time-based variant swaps cost for elapsed dev time — same ratio; because platforms take longer than derivatives, that's the case for running renewal R&D concurrently.)*
+- **Platform Leverage `L = product sales ÷ R&D cost`.** Commercial return per R&D dollar. Use *sales*, not profit (profit isn't kept consistently at product level). In a healthy family E falls as L rises.
+
+**The renewal-timing read (the decision).** Rising E + falling L = the architecture is **saturating** (the S-curve flattening). The trap: this is invisible in annual budgets or product sales — only the ratios surface it. **Start renewal at the efficiency *peak*, while the platform still looks healthy** — a late start forces a crash effort (the paper's imaging family swung engineering allocation from **10% → 70% in a single year** — the signature of starting too late). Computable at three levels: individual product · platform version/family · *across* families (internal engineering-group benchmarking; inflation-correct with a CPI deflator across generations). A sudden efficiency spike can also flag **org dysfunction** — a charter moved between labs, key engineers gone, "charter wars" — not just tech limits; diagnose the cause before acting.
+
+**Worked (the paper's measurement-systems firm, Family B):** five derivatives off one platform ran ~**0.11** efficiency until the fourth spiked to **0.42** (architecture at its limit); the third product returned **$259 in sales per R&D dollar** before leverage fell — management should have *started* renewal at that peak, not after a crash.
+
+**Where it sits:** the §1 North-Star tree factors *customer* value; the §9 value-driver tree factors *enterprise* value; this factors *R&D-portfolio* health — the engineering-investment twin. Read E and L *with* product-change, quality, and market context (a fast-growing market flatters L; a supplier/component breakthrough can flatter E), and note they exclude manufacturing-engineering and market-introduction cost. Pair the renewal call with §Strategy share-vs-vary platform decisions. **Confidence: HIGH** (peer-tier MIT working paper; 20+yr dataset across five families).
 ===== END PRO: METRICS =====
