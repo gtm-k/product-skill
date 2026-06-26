@@ -1,5 +1,5 @@
 ===== BEGIN PRO: METRICS =====
-Load when: designing a North Star + input tree, building a growth-accounting/retention model, defining guardrails, picking a B2B or agent/AI outcome metric, or auditing a metric that "looks up" while value isn't. Base §Metrics routes here for the worked depth. All `~`/band numbers are directional / point-in-time — verify against your own data.
+Load when: designing a North Star + input tree, building a growth-accounting/retention model, defining guardrails, picking a B2B or agent/AI outcome metric, building a value-driver tree (impact × controllability), or auditing a metric that "looks up" while value isn't. Base §Metrics routes here for the worked depth. All `~`/band numbers are directional / point-in-time — verify against your own data.
 
 ## 1. North Star + 3-5 input tree — the WORKED decomposition
 **Rule (Amplitude North Star Playbook):** ONE metric that captures delivered customer value + revenue, broken into **3-5 *movable* input metrics** that ladder to it multiplicatively or additively. Inputs must be (a) leading, (b) ownable by a team, (c) collectively ~explain the NSM. If an input can't be moved by a squad next quarter, it's a context metric, not an input.
@@ -121,4 +121,23 @@ Tells, and the paired value metric that exposes each:
 | NRR (B2B SaaS) | <90% | 100-110% | 120%+ |
 | Freemium free→paid | <2% | ~2-5% | 5%+ |
 **PMF probe (Sean Ellis test):** ≥40% of activated users would be "very disappointed" without the product → signal of product-market fit. Survey *activated* users only; an unactivated cohort answers about a product they never experienced.
+
+## 9. Value-driver tree — the business-value twin of the North Star tree (L.E.K.)
+The §1 North Star tree factors *customer* value into movable product inputs. The **value-driver tree** factors *enterprise/shareholder* value (NPV / operating profit) into the operating drivers a team can move — **price · volume · mix · cost · capital · retention** — then ranks them by **leverage, not by how aggressively you can manage them.** Use it to connect a product metric to dollars (business case, exec memo) and to catch the trap L.E.K. names directly: *companies "unintentionally reward managers for attaining performance measures which have little impact on value."* (L.E.K. Consulting, *Identifying & Managing Key Value Drivers*, Exec Insights XIX-36, © 2017.)
+
+**3 steps (L.E.K.'s exact sequence):**
+1. **Map** — disaggregate the top number into progressively smaller components "until you reach the level where daily operating management decisions reside" (operating margin → distribution cost → trucking → truck utilization). Document the linkages.
+2. **Sensitivity test** — perturb each driver (±10%, or one unit) and measure ΔNPV; rank by the size of the swing (a **tornado**). The ranking routinely upends priorities: L.E.K.'s petroleum business obsessed over *industrial volume* (+10% ≈ $14M) and *trucking cost* (≈ $26–33M) — both near-zero — while *consumer/retail margin* ($485–681M), *retail investment* ($385M), *retail volume* ($321M) and *rail cost* ($281M) dwarfed them. *(All figures illustrative, from the L.E.K. case.)*
+3. **Controllability filter** — keep only drivers management can actually move. The sharpest lesson of the case: the **single highest-impact driver, margin, was *uncontrollable*** (regulated pricing) — so it is **NOT a KPI**; it's a hedge / strategy problem. After filtering, the actual KPIs became the controllable high-impact drivers: **discounting, retail volume, investment, rail cost.**
+
+**Value-driver matrix (value impact × controllability):**
+
+| | Low value impact | High value impact |
+|---|---|---|
+| **High control** | Monitor (cheap to watch) | **Manage actively → these become your KPIs + tie to incentives** |
+| **Low control** | Low priority — ignore | Hedge the downside / reconfigure strategy |
+
+Two tests, **both required: significant value impact AND controllable.** Most ops lists fail because "every operating factor is treated as equally important" (L.E.K.).
+
+**Tie-off:** assign each surviving driver an owner by type — *growth* → marketing/sales, *efficiency* → ops, *financial* (capital/WACC) → finance — and substitute value drivers into the performance/incentive system, **tailored by function**. Re-run sensitivity when the cost/revenue structure shifts — the ranking is point-in-time.
 ===== END PRO: METRICS =====
