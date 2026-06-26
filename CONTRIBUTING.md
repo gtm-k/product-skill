@@ -2,6 +2,32 @@
 
 Thank you for your interest in improving this product management skill file. Contributions from the community make this resource better for everyone.
 
+*(New here? The [README](README.md) covers what product-skill is and how to use it. This page is for people who want to understand how it's built, extend it, or contribute.)*
+
+## How it's built
+
+product-skill is deliberately **one lean file** (`SKILL.md`). It opens by telling the AI to do four things on every product question: ask only the clarifying questions that genuinely matter, pick the *single* right framework instead of dumping a menu, lead with a recommendation, and run a blind-spot check sized to the stakes. A short routing section sends each kind of request (prioritization, pricing, metrics, discovery, and so on) to the matching part of the file. Keeping it to one portable file is a design choice: it loads fast, stays readable, and the same plain-text file runs on every platform — no bundle, no scripts, nothing to break when a tool updates.
+
+## Go deeper — PRO modules
+
+The base file handles the everyday job on its own. For a task that needs deep, worked treatment, the user types `Load PRO: <name>` and the AI hands over the exact block to paste — plain text, same on every platform, no install.
+
+| `Load PRO:` | Use when you're… | Paste from |
+|---|---|---|
+| `pricing` | running a willingness-to-pay study, tiering, or AI/outcome pricing | `pro/pricing.md` |
+| `ai-evals` | building a full eval plan, validating an AI judge, or monitoring quality | `pro/ai-evals.md` |
+| `positioning` | doing an end-to-end positioning build, sales pitch, or launch plan | `pro/positioning.md` |
+| `growth` | designing experiments, growth loops, or a PLG motion | `pro/growth.md` |
+| `discovery` | writing interview guides, designing assumption tests, or translating needs to a spec (House of Quality) | `pro/discovery.md` |
+| `metrics` | building a North Star + input-metric tree, value-driver tree, or platform-renewal metrics | `pro/metrics.md` |
+| `strategy` | writing a strategy doc, business plan, portfolio/project-mix plan, or platform/innovation strategy | `pro/strategy.md` |
+
+If a module isn't loaded, the file tells the AI to hand over the path and offer a clearly-flagged lighter answer from the base file — never to fake the curated depth.
+
+## Customizing it for yourself
+
+It's just a text file — edit it. Add your own frameworks, swap in your company's context and metrics, trim sections you don't use, or fork it for your team. Share-alike under CC BY-SA 4.0 means your version stays open too. Keep the file lean and portable — every addition should carry judgment a model wouldn't volunteer on its own (a when-to-use boundary, a calibration number, an anti-pattern, an opinionated default), not re-explain canon the AI already knows.
+
 ## How to Contribute
 
 1. **Fork** this repository
