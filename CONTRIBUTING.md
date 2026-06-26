@@ -6,7 +6,7 @@ Thank you for your interest in improving this product management skill file. Con
 
 ## How it's built
 
-product-skill is deliberately **one lean file** (`SKILL.md`). It opens by telling the AI to do four things on every product question: ask only the clarifying questions that genuinely matter, pick the *single* right framework instead of dumping a menu, lead with a recommendation, and run a blind-spot check sized to the stakes. A short routing section sends each kind of request (prioritization, pricing, metrics, discovery, and so on) to the matching part of the file. Keeping it to one portable file is a design choice: it loads fast, stays readable, and works identically on every platform — no bundle, no scripts, nothing to break when a tool updates.
+product-skill is deliberately **one lean file** (`SKILL.md`). It opens by telling the AI to do four things on every product question: ask only the clarifying questions that genuinely matter, pick the *single* right framework instead of dumping a menu, lead with a recommendation, and run a blind-spot check sized to the stakes. A short routing section sends each kind of request (prioritization, pricing, metrics, discovery, and so on) to the matching part of the file. Keeping it to one portable file is a design choice: it loads fast, stays readable, and the same plain-text file runs on every platform — no bundle, no scripts, nothing to break when a tool updates.
 
 ## Go deeper — PRO modules
 

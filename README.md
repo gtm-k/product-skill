@@ -129,7 +129,7 @@ Copy a line, paste your own details, and go:
 
 **Does it send my data anywhere?** No. It's just text instructions for the AI you're already using — your conversation stays wherever you're working.
 
-**Which AI is best for it?** It behaves the same across ChatGPT, Claude, and Gemini. Use whichever you have.
+**Which AI is best for it?** It's built to work the same way across ChatGPT, Claude, and Gemini. Use whichever you have.
 
 **Do I need to be technical?** No. If you can copy and paste, you can use it.
 

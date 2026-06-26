@@ -2,6 +2,9 @@
 .DS_Store
 Thumbs.db
 
+# Crash / diagnostic dumps
+*.stackdump
+
 # Editor files
 *.swp
 *.swo

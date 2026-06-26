@@ -42,7 +42,7 @@ Default to THIS file alone. For deep worked treatment, see **PRO MODULES** (last
 - build-what-next / prioritize → **§Prioritization** · metric / North Star → **§Metrics**
 - PRD / spec → **§Templates** · AI feature / evals → **§AI-Native PM** (read for ANY LLM-backed feature)
 - positioning / launch / GTM → **§GTM** · sales-escalated feature → **§GTM › Enterprise**
-- pricing / packaging → **§Pricing** · strategy / vision → **§Strategy** · roadmap → **§Org**
+- pricing / packaging → **§Pricing** · strategy / vision / innovation / "not pulling ahead" → **§Strategy** · roadmap → **§Org**
 - discovery / research → **§Discovery** · growth / PLG / experiment → **§Growth**
 - org / team / process → **§Org** · career / level-up → **§Career**
 
