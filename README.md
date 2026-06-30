@@ -4,6 +4,7 @@
 
 **One free file. No install, no account, no subscription.** Paste it into the AI you already use, and generic answers become the kind of advice a seasoned product leader gives: a clear recommendation, the right framework for the moment, and a gut-check on your blind spots.
 
+[![Live demo: visual field guide](https://img.shields.io/badge/Live%20demo-visual%20field%20guide-7c3aed)](https://gtm-k.github.io/product-skill/)
 ![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-22c55e)
 ![Price: Free](https://img.shields.io/badge/Price-Free-22c55e)
 ![Setup: One file, no install](https://img.shields.io/badge/Setup-One%20file%20·%20no%20install-2563eb)
@@ -47,6 +48,19 @@
 > Same AI. Same question. **One paste of difference** — a hedge-everything answer becomes a decision you can defend, plus a check on where it could bite you.
 >
 > *(The A–E features are a placeholder to show the format — not a real case.)*
+
+---
+
+## 🔮 See it in action — the visual field guide
+
+**[Open the visual field guide →](https://gtm-k.github.io/product-skill/)** — the whole skill, made visual. Browse **30+ frameworks across 10 disciplines** (strategy, discovery, prioritization, metrics, AI-native PM, GTM, pricing, growth, org, and career) and try the thinking **live in your browser** — no install, no account:
+
+- 🎚️ **RICE scorer** — edit reach × impact × confidence ÷ effort and watch the ranking re-sort live
+- 🎯 **Positioning builder** — derive a Dunford-style positioning statement field by field
+- 💰 **Pricing / EVC calculator** — compute a defensible value ceiling and Good / Better / Best tiers
+- 🛡️ **Blind-spot tagger** — match the bias-check ritual to your stakes and generate a decision tag
+
+It's the same [`SKILL.md`](SKILL.md) you paste into your AI — just rendered as an interactive guide so you can *see* how a practitioner actually uses it.
 
 ---
 
