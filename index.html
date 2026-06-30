@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./vendor/react.production.min.js"></script>
+<script src="./vendor/react-dom.production.min.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>product-skill — a visual field guide to senior PM judgment</title>
+<meta name="description" content="An interactive, visual guide to product-skill: 30+ product-management frameworks across strategy, discovery, prioritization, metrics, AI-native PM, GTM, pricing, growth, org and career — with live tools (RICE scorer, positioning builder, pricing/EVC calculator, blind-spot tagger).">
+<meta name="author" content="Gowtham Kethineedi · product-skill (CC BY-SA 4.0)">
+<meta name="theme-color" content="#16130e">
+<meta property="og:type" content="website">
+<meta property="og:title" content="product-skill — a visual field guide to senior PM judgment">
+<meta property="og:description" content="30+ PM frameworks made visual, with live tools: prioritization, discovery, metrics, AI evals, positioning, pricing and more.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="product-skill — a visual field guide">
+<meta name="twitter:description" content="30+ PM frameworks made visual, with live interactive tools.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2316130e'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23f0ebe0' stroke-width='2.4'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23d97757'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script src="./vendor/gsap.min.js"></script>
+<script src="./vendor/ScrollTrigger.min.js"></script>
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:#f4f1ea;}
+  ::selection{background:var(--accent,#d97757);color:#fff;}
+  html.anim [data-reveal],html.anim [data-hero-line]{opacity:0;}
+  html.anim [data-stagger] > *{opacity:0;}
+  [data-reveal],[data-stagger] > *{will-change:transform,opacity;}
+  @keyframes scrollcue{0%{transform:translateY(0);opacity:.2}50%{opacity:1}100%{transform:translateY(9px);opacity:.2}}
+  input[type=number]{-moz-appearance:textfield;}
+  input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+  html{scroll-behavior:smooth;}
+  .navrail{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:60;display:flex;flex-direction:column;gap:3px;background:rgba(247,244,237,.96);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(26,23,18,.1);box-shadow:0 6px 26px rgba(20,16,10,.18);border-radius:20px;padding:12px 11px;}
+  .nav-item{position:relative;display:flex;align-items:center;justify-content:center;background:none;border:0;padding:4px 3px;cursor:pointer;}
+  .nav-label{position:absolute;right:22px;top:50%;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.03em;color:#1a1712;background:#faf8f2;border:1px solid rgba(26,23,18,.12);padding:4px 9px;border-radius:6px;box-shadow:0 4px 18px rgba(20,16,10,.4);opacity:0;transform:translateY(-50%) translateX(6px);transition:opacity .22s ease,transform .22s ease;white-space:nowrap;pointer-events:none;}
+  .navrail:hover .nav-label{opacity:1;transform:translateY(-50%);}
+  .nav-dot{width:8px;height:8px;border-radius:50%;background:rgba(26,23,18,.22);transition:all .25s ease;flex-shrink:0;}
+  .nav-item:hover .nav-dot{background:var(--accent,#d97757);}
+  .nav-item.active .nav-dot{background:var(--accent,#d97757);transform:scale(1.5);}
+  .nav-item.active .nav-label{opacity:1;background:var(--accent,#d97757);color:#fff;transform:translateY(-50%);}
+  .ricescroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .ricescroll-inner{min-width:520px;}
+  @media(max-width:760px){.g2{grid-template-columns:1fr !important;gap:34px !important;}.g5{grid-template-columns:1fr 1fr !important;}}
+  @media(max-width:480px){.g5{grid-template-columns:1fr !important;}.navrail{right:8px;padding:9px 7px;gap:1px;}.nav-item{padding:6px 4px;}}
+</style>
+</helmet>
+
+<div data-root style="font-family:'Hanken Grotesk',system-ui,sans-serif;color:#1a1712;background:#f4f1ea;overflow-x:hidden;-webkit-font-smoothing:antialiased;">
+
+  <template id="__bundler_thumbnail">
+    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <rect width="400" height="400" fill="#16130e"/>
+      <circle cx="200" cy="200" r="80" fill="none" stroke="#f0ebe0" stroke-width="11"/>
+      <circle cx="200" cy="200" r="48" fill="none" stroke="#f0ebe0" stroke-width="11"/>
+      <circle cx="200" cy="200" r="18" fill="#d97757"/>
+    </svg>
+  </template>
+
+  <div data-progress style="position:fixed;top:0;left:0;right:0;height:3px;z-index:70;background:rgba(26,23,18,.06);">
+    <div data-progress-fill style="height:100%;width:0%;background:var(--accent,#d97757);"></div>
+  </div>
+
+  <nav class="navrail" aria-label="Section navigation">
+    <button type="button" class="nav-item" data-target="Hero" onClick="{{ goTo }}"><span class="nav-label">Top</span><span class="nav-dot"></span></button>
+    <button type="button" class="nav-item" data-target="Operating loop" onClick="{{ goTo }}"><span class="nav-label">The loop</span><span class="nav-dot"></span></button>
+    <button type="button" class="nav-item" data-target="Router" onClick="{{ goTo }}"><span class="nav-label">Router</span><span class="nav-dot"></span></button>
+    <button type="button" class="nav-item" data-target="Disciplines" onClick="{{ goTo }}"><span class="nav-label">Disciplines</span><span class="nav-dot"></span></button>
+    <button type="button" class="nav-item" data-target="Prioritization" onClick="{{ goTo }}"><span class="nav-label">Prioritize</span><span class="nav-dot"></span></button>
+    <button type="button" class="nav-item" data-target="Discovery" onClick="{{ goTo }}"><span class="nav-label">Discovery</span><span class="nav-dot"></span></button>
+    <button type="button" class="nav-item" data-target="Metrics" onClick="{{ goTo }}"><span class="nav-label">Metrics</span><span class="nav-dot"></span></button>
+    <button type="button" class="nav-item" data-target="AI-Native" onClick="{{ goTo }}"><span class="nav-label">AI-Native</span><span class="nav-dot"></span></button>
+    <button type="button" class="nav-item" data-target="GTM and Pricing" onClick="{{ goTo }}"><span class="nav-label">GTM &amp; Pricing</span><span class="nav-dot"></span></button>
+    <button type="button" class="nav-item" data-target="Confidence" onClick="{{ goTo }}"><span class="nav-label">Calibrate</span><span class="nav-dot"></span></button>
+    <button type="button" class="nav-item" data-target="Anti-patterns" onClick="{{ goTo }}"><span class="nav-label">Anti-patterns</span><span class="nav-dot"></span></button>
+    <button type="button" class="nav-item" data-target="Templates" onClick="{{ goTo }}"><span class="nav-label">Templates</span><span class="nav-dot"></span></button>
+    <button type="button" class="nav-item" data-target="PRO modules" onClick="{{ goTo }}"><span class="nav-label">PRO depth</span><span class="nav-dot"></span></button>
+    <button type="button" class="nav-item" data-target="Toolkit" onClick="{{ goTo }}"><span class="nav-label">Toolkit</span><span class="nav-dot"></span></button>
+    <button type="button" class="nav-item" data-target="CTA" onClick="{{ goTo }}"><span class="nav-label">Get started</span><span class="nav-dot"></span></button>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <section data-screen-label="Hero" style="background:#16130e;color:#f0ebe0;padding:0;position:relative;overflow:hidden;">
+    <div style="max-width:1180px;margin:0 auto;padding:30px 32px 8px;display:flex;justify-content:space-between;align-items:center;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,235,224,.55);">
+      <span>product-skill</span>
+      <span>a visual field guide · v4.2</span>
+    </div>
+
+    <div style="max-width:1180px;margin:0 auto;padding:56px 32px 0;">
+      <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#d97757);margin-bottom:30px;" data-reveal>Senior product judgment · for any AI</div>
+      <h1 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(40px,7.4vw,92px);line-height:.98;letter-spacing:-.02em;margin:0;max-width:15ch;">
+        <span style="display:block;overflow:hidden;"><span data-hero-line style="display:inline-block;">Turn any AI into a</span></span>
+        <span style="display:block;overflow:hidden;"><span data-hero-line style="display:inline-block;">senior <span style="font-style:italic;color:var(--accent,#d97757);">product</span> mentor</span></span>
+        <span style="display:block;overflow:hidden;"><span data-hero-line style="display:inline-block;">— with one paste.</span></span>
+      </h1>
+      <p style="max-width:54ch;font-size:clamp(17px,1.9vw,21px);line-height:1.55;color:rgba(240,235,224,.72);margin:34px 0 0;" data-reveal>
+        Generic answers become the kind of advice a seasoned product leader gives: a clear recommendation, the right framework for the moment, and a gut-check on your blind spots. This guide makes the whole skill <em style="font-style:italic;color:#f0ebe0;">visual</em> — 30+ frameworks across 10 disciplines, the way a practitioner actually uses them.
+      </p>
+    </div>
+
+    <!-- before / after -->
+    <div style="max-width:1180px;margin:0 auto;padding:56px 32px 12px;">
+      <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,235,224,.5);margin-bottom:18px;" data-reveal>See the difference — same AI, same question</div>
+      <div style="border:1px solid rgba(240,235,224,.16);border-radius:4px;padding:20px 22px;margin-bottom:22px;font-size:18px;line-height:1.5;color:rgba(240,235,224,.9);" data-reveal>
+        <span style="font-family:'Space Mono',monospace;font-size:12px;color:var(--accent,#d97757);">YOU ASK&nbsp;&nbsp;</span> “We have 5 features requested for next quarter but only room for 2. How do I decide?”
+      </div>
+      <div data-stagger class="g2" style="display:grid;grid-template-columns:1fr 1fr;gap:22px;">
+        <div style="background:rgba(240,235,224,.04);border:1px solid rgba(240,235,224,.12);border-radius:4px;padding:26px;">
+          <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,235,224,.45);margin-bottom:14px;">Plain AI</div>
+          <p style="margin:0;font-size:15.5px;line-height:1.65;color:rgba(240,235,224,.66);">“It depends on impact and effort. You could try a framework like RICE or MoSCoW. Gather stakeholder input, weigh each feature against your goals, balance quick wins against strategic bets…”</p>
+          <p style="margin:16px 0 0;font-style:italic;font-family:'Newsreader',serif;color:rgba(240,235,224,.45);font-size:15px;">Lists options. Hands the work back to you. No recommendation, no opinion.</p>
+        </div>
+        <div style="background:rgba(217,119,87,.08);border:1px solid var(--accent,#d97757);border-radius:4px;padding:26px;position:relative;">
+          <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent,#d97757);margin-bottom:14px;">AI + product-skill</div>
+          <p style="margin:0 0 12px;font-size:15.5px;line-height:1.6;color:#f0ebe0;"><strong style="color:var(--accent,#d97757);">Use RICE here</strong> — you have rough reach and effort, so it gives a defensible ranking fast.</p>
+          <p style="margin:0 0 12px;font-size:15.5px;line-height:1.6;color:#f0ebe0;"><strong>Ship A and C this quarter.</strong> A is high-reach, low-effort. C is the enabler the rest depends on. <strong>Defer B</strong> (high effort, unproven), <strong>park D + E.</strong></p>
+          <p style="margin:0;font-size:14.5px;line-height:1.55;color:rgba(240,235,224,.78);border-top:1px solid rgba(240,235,224,.14);padding-top:12px;">⚠ <strong>Blind-spot check:</strong> RICE rewards <em style="font-style:italic;">this quarter's</em> reach — if B is your enterprise bet, it'll quietly under-rank it. Flag it as a strategic call, separate from the score.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="max-width:1180px;margin:0 auto;padding:30px 32px 60px;display:flex;align-items:center;gap:12px;color:rgba(240,235,224,.4);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;">
+      <span style="display:inline-block;width:7px;height:7px;border-right:2px solid rgba(240,235,224,.5);border-bottom:2px solid rgba(240,235,224,.5);transform:rotate(45deg);animation:scrollcue 1.6s ease-in-out infinite;"></span>
+      Scroll to learn the system
+    </div>
+  </section>
+
+  <!-- ===================== OPERATING LOOP ===================== -->
+  <section data-screen-label="Operating loop" style="max-width:1180px;margin:0 auto;padding:110px 32px 90px;">
+    <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#d97757);margin-bottom:18px;" data-reveal>The operating loop</div>
+    <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,4.4vw,52px);line-height:1.04;letter-spacing:-.015em;margin:0 0 16px;max-width:20ch;" data-reveal>For <em style="font-style:italic;">any</em> product task, it runs the same five moves.</h2>
+    <p style="max-width:58ch;font-size:18px;line-height:1.6;color:#56503f;margin:0 0 60px;" data-reveal>Not a menu dump — a disciplined sequence that ends in a decision you can defend.</p>
+
+    <div style="position:relative;padding-left:46px;">
+      <div data-grow-line style="position:absolute;left:15px;top:6px;bottom:6px;width:2px;background:var(--accent,#d97757);transform-origin:top center;"></div>
+      <div data-loopsteps style="display:flex;flex-direction:column;gap:30px;">
+        <div data-loopstep style="position:relative;">
+          <div style="position:absolute;left:-46px;top:-2px;width:32px;height:32px;border-radius:50%;background:#16130e;color:#f0ebe0;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:14px;">1</div>
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:25px;margin:0 0 5px;">Clarify only if ambiguous</h3>
+          <p style="margin:0;font-size:16.5px;line-height:1.55;color:#56503f;max-width:64ch;">Ask up to five sharp questions when the request is genuinely under-specified — otherwise proceed. No interrogation.</p>
+        </div>
+        <div data-loopstep style="position:relative;">
+          <div style="position:absolute;left:-46px;top:-2px;width:32px;height:32px;border-radius:50%;background:#16130e;color:#f0ebe0;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:14px;">2</div>
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:25px;margin:0 0 5px;">Pick the <em style="font-style:italic;">one</em> right framework</h3>
+          <p style="margin:0;font-size:16.5px;line-height:1.55;color:#56503f;max-width:64ch;">Match the method to the decision — don't dump the whole toolbox on the table.</p>
+        </div>
+        <div data-loopstep style="position:relative;">
+          <div style="position:absolute;left:-46px;top:-2px;width:32px;height:32px;border-radius:50%;background:#16130e;color:#f0ebe0;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:14px;">3</div>
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:25px;margin:0 0 5px;">Output a decision-ready artifact</h3>
+          <p style="margin:0;font-size:16.5px;line-height:1.55;color:#56503f;max-width:64ch;">Recommendation first, reasoning second. An exec-ready answer — a scoring table, an eval plan, a PRD — not an essay.</p>
+        </div>
+        <div data-loopstep style="position:relative;">
+          <div style="position:absolute;left:-46px;top:-2px;width:32px;height:32px;border-radius:50%;background:#16130e;color:#f0ebe0;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:14px;">4</div>
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:25px;margin:0 0 5px;">Tag confidence</h3>
+          <p style="margin:0;font-size:16.5px;line-height:1.55;color:#56503f;max-width:64ch;">Every substantive recommendation carries a label — from <strong>VERY HIGH</strong> to <strong>SPECULATIVE</strong> — so you know how hard to lean on it.</p>
+        </div>
+        <div data-loopstep style="position:relative;">
+          <div style="position:absolute;left:-46px;top:-2px;width:32px;height:32px;border-radius:50%;background:var(--accent,#d97757);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:14px;">5</div>
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:25px;margin:0 0 5px;">Run the blind-spot check</h3>
+          <p style="margin:0;font-size:16.5px;line-height:1.55;color:#56503f;max-width:64ch;">Full ritual for high-stakes, irreversible calls; a one-line tag otherwise. Drop the ritual, never the thought.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ROUTER ===================== -->
+  <section data-screen-label="Router" style="background:#16130e;color:#f0ebe0;padding:96px 0;">
+    <div style="max-width:1180px;margin:0 auto;padding:0 32px;">
+      <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#d97757);margin-bottom:18px;" data-reveal>The router</div>
+      <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,4.4vw,52px);line-height:1.04;letter-spacing:-.015em;margin:0 0 16px;max-width:22ch;" data-reveal>What are you trying to do right now?</h2>
+      <p style="max-width:56ch;font-size:18px;line-height:1.6;color:rgba(240,235,224,.66);margin:0 0 44px;" data-reveal>Tap a task — the skill routes it to the one discipline that owns the answer.</p>
+
+      <div data-stagger style="display:flex;flex-wrap:wrap;gap:11px;margin-bottom:36px;">
+        <sc-for list="{{ routerTasks }}" as="task" hint-placeholder-count="11">
+          <button type="button" data-key="{{ task.key }}" onClick="{{ pickRouter }}" style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;font-weight:500;background:rgba(240,235,224,.05);color:#f0ebe0;border:1px solid rgba(240,235,224,.18);border-radius:999px;padding:11px 19px;cursor:pointer;transition:all .18s ease;" style-hover="background:rgba(240,235,224,.12);border-color:rgba(240,235,224,.4);">{{ task.label }}</button>
+        </sc-for>
+      </div>
+
+      <div style="border-top:1px solid rgba(240,235,224,.14);padding-top:34px;min-height:150px;">
+        <sc-if value="{{ routeActive }}" hint-placeholder-val="{{ true }}">
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:30px;align-items:start;">
+            <div style="font-family:'Newsreader',serif;font-style:italic;font-size:64px;line-height:1;color:var(--accent,#d97757);">{{ routeCard.num }}</div>
+            <div>
+              <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,235,224,.5);margin-bottom:8px;">Go to · {{ routeCard.title }}</div>
+              <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:30px;margin:0 0 12px;">{{ routeCard.tagline }}</h3>
+              <p style="margin:0 0 16px;font-size:16.5px;line-height:1.6;color:rgba(240,235,224,.72);max-width:62ch;">{{ routeCard.blurb }}</p>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                <sc-for list="{{ routeCard.frameworks }}" as="fw" hint-placeholder-count="4">
+                  <span style="font-family:'Space Mono',monospace;font-size:12px;background:rgba(240,235,224,.07);border:1px solid rgba(240,235,224,.16);border-radius:3px;padding:5px 10px;color:rgba(240,235,224,.85);white-space:nowrap;">{{ fw }}</span>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ routeEmpty }}" hint-placeholder-val="{{ true }}">
+          <p style="font-family:'Newsreader',serif;font-style:italic;font-size:22px;color:rgba(240,235,224,.4);margin:8px 0 0;">Pick a task above to see where it routes…</p>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== DISCIPLINES GRID ===================== -->
+  <section data-screen-label="Disciplines" style="max-width:1180px;margin:0 auto;padding:110px 32px 70px;">
+    <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#d97757);margin-bottom:18px;" data-reveal>The ten disciplines</div>
+    <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,4.4vw,52px);line-height:1.04;letter-spacing:-.015em;margin:0 0 50px;max-width:20ch;" data-reveal>The whole craft, in ten moves.</h2>
+    <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:1px;background:rgba(26,23,18,.12);border:1px solid rgba(26,23,18,.12);">
+      <sc-for list="{{ disciplines }}" as="d" hint-placeholder-count="10">
+        <div style="background:#f4f1ea;padding:30px 28px;transition:background .2s ease;" style-hover="background:#ebe6db;">
+          <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:14px;">
+            <span style="font-family:'Newsreader',serif;font-style:italic;font-size:34px;color:var(--accent,#d97757);line-height:1;">{{ d.num }}</span>
+            <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:24px;margin:0;">{{ d.title }}</h3>
+          </div>
+          <p style="font-family:'Newsreader',serif;font-style:italic;font-size:17px;color:#1a1712;margin:0 0 14px;line-height:1.4;">{{ d.tagline }}</p>
+          <p style="font-size:15px;line-height:1.55;color:#56503f;margin:0 0 16px;">{{ d.blurb }}</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <sc-for list="{{ d.frameworks }}" as="fw" hint-placeholder-count="4">
+              <span style="font-family:'Space Mono',monospace;font-size:11px;color:#56503f;border:1px solid rgba(26,23,18,.18);border-radius:3px;padding:3px 8px;white-space:nowrap;">{{ fw }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===================== FEATURED: PRIORITIZATION + RICE ===================== -->
+  <section data-screen-label="Prioritization" style="background:#ebe6db;padding:100px 0;border-top:1px solid rgba(26,23,18,.1);border-bottom:1px solid rgba(26,23,18,.1);">
+    <div style="max-width:1180px;margin:0 auto;padding:0 32px;">
+      <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#d97757);margin-bottom:18px;" data-reveal>Deep dive · Prioritization</div>
+      <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,4.4vw,52px);line-height:1.04;letter-spacing:-.015em;margin:0 0 16px;max-width:24ch;" data-reveal>The selection <em style="font-style:italic;">is</em> the judgment. The arithmetic is the easy part.</h2>
+      <p style="max-width:60ch;font-size:18px;line-height:1.6;color:#56503f;margin:0 0 50px;" data-reveal>Match the method to the decision, not to the size of the backlog.</p>
+
+      <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:18px;margin-bottom:64px;">
+        <sc-for list="{{ priMethods }}" as="m" hint-placeholder-count="7">
+          <div style="background:#f4f1ea;border:1px solid rgba(26,23,18,.12);border-radius:4px;padding:22px;">
+            <div style="font-family:'Space Mono',monospace;font-weight:700;font-size:15px;color:#1a1712;margin-bottom:3px;">{{ m.name }}</div>
+            <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--accent,#d97757);margin-bottom:14px;">{{ m.formula }}</div>
+            <p style="margin:0 0 10px;font-size:14px;line-height:1.5;color:#56503f;"><strong style="color:#1a1712;">Use when</strong> {{ m.use }}</p>
+            <p style="margin:0;font-size:13px;line-height:1.5;color:#7a7263;border-top:1px solid rgba(26,23,18,.1);padding-top:10px;"><strong style="color:var(--accent,#d97757);">Watch</strong> {{ m.watch }}</p>
+          </div>
+        </sc-for>
+      </div>
+
+      <!-- LIVE RICE SCORER -->
+      <div data-reveal style="background:#16130e;color:#f0ebe0;border-radius:6px;padding:38px 34px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px;margin-bottom:8px;">
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:28px;margin:0;">Try it — a live RICE scorer</h3>
+          <span style="font-family:'Space Mono',monospace;font-size:12px;color:rgba(240,235,224,.5);">Reach × Impact × Confidence ÷ Effort</span>
+        </div>
+        <p style="margin:0 0 26px;font-size:15px;line-height:1.55;color:rgba(240,235,224,.6);max-width:70ch;">Edit the numbers. The ranking re-sorts live. Confidence is an honest discount (%), not a fudge factor — kill anything under 50% rather than rank it.</p>
+
+        <div class="ricescroll"><div class="ricescroll-inner">
+        <div style="display:grid;grid-template-columns:1.4fr .8fr .8fr .8fr .8fr .9fr auto;gap:10px 14px;align-items:center;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(240,235,224,.45);margin-bottom:6px;">
+          <span>Feature</span><span>Reach</span><span>Impact</span><span>Conf %</span><span>Effort</span><span style="text-align:right;">Score</span><span></span>
+        </div>
+        <sc-for list="{{ riceRows }}" as="row" hint-placeholder-count="4">
+          <div style="display:grid;grid-template-columns:1.4fr .8fr .8fr .8fr .8fr .9fr auto;gap:10px 14px;align-items:center;padding:9px 0;border-top:1px solid rgba(240,235,224,.1);">
+            <span style="font-size:15px;color:#f0ebe0;font-weight:500;">{{ row.name }}</span>
+            <input type="number" value="{{ row.reach }}" data-row="{{ row.idx }}" data-field="reach" onInput="{{ riceInput }}" style="width:100%;background:rgba(240,235,224,.06);border:1px solid rgba(240,235,224,.18);border-radius:3px;color:#f0ebe0;font-family:'Space Mono',monospace;font-size:14px;padding:7px 8px;">
+            <input type="number" step="0.25" value="{{ row.impact }}" data-row="{{ row.idx }}" data-field="impact" onInput="{{ riceInput }}" style="width:100%;background:rgba(240,235,224,.06);border:1px solid rgba(240,235,224,.18);border-radius:3px;color:#f0ebe0;font-family:'Space Mono',monospace;font-size:14px;padding:7px 8px;">
+            <input type="number" value="{{ row.conf }}" data-row="{{ row.idx }}" data-field="conf" onInput="{{ riceInput }}" style="width:100%;background:rgba(240,235,224,.06);border:1px solid rgba(240,235,224,.18);border-radius:3px;color:#f0ebe0;font-family:'Space Mono',monospace;font-size:14px;padding:7px 8px;">
+            <input type="number" value="{{ row.effort }}" data-row="{{ row.idx }}" data-field="effort" onInput="{{ riceInput }}" style="width:100%;background:rgba(240,235,224,.06);border:1px solid rgba(240,235,224,.18);border-radius:3px;color:#f0ebe0;font-family:'Space Mono',monospace;font-size:14px;padding:7px 8px;">
+            <span style="text-align:right;font-family:'Space Mono',monospace;font-size:17px;font-weight:700;color:var(--accent,#d97757);">{{ row.score }}</span>
+            <span style="font-family:'Space Mono',monospace;font-size:12px;color:{{ row.rankColor }};white-space:nowrap;">{{ row.verdict }}</span>
+          </div>
+        </sc-for>
+        </div></div>
+        <p style="margin:22px 0 0;font-size:13.5px;line-height:1.55;color:rgba(240,235,224,.55);border-top:1px solid rgba(240,235,224,.1);padding-top:16px;">⚠ Naive RICE <em style="font-style:italic;">inverts</em> on interdependent items, and Effort in the denominator quietly punishes big strategic bets — switch to cost-of-delay / WSJF when the call is time-sensitive, and classify Type-1 (irreversible) vs Type-2 (reversible) before you decide how fast to move.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FEATURED: DISCOVERY / OST ===================== -->
+  <section data-screen-label="Discovery" style="max-width:1180px;margin:0 auto;padding:110px 32px;">
+    <div class="g2" style="display:grid;grid-template-columns:1fr 1.05fr;gap:60px;align-items:center;">
+      <div>
+        <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#d97757);margin-bottom:18px;" data-reveal>Deep dive · Discovery</div>
+        <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(28px,4vw,46px);line-height:1.05;letter-spacing:-.015em;margin:0 0 20px;" data-reveal>Build is cheap. Knowing <em style="font-style:italic;">what</em> to build is the constraint.</h2>
+        <p style="font-size:17px;line-height:1.6;color:#56503f;margin:0 0 18px;" data-reveal>Discovery is a weekly <strong>habit</strong>, not a project sprint (Torres). The trio — PM, design, eng — discovers together, so the people who build it hear the customer firsthand.</p>
+        <p style="font-size:17px;line-height:1.6;color:#56503f;margin:0 0 18px;" data-reveal>The <strong>Opportunity Solution Tree</strong> keeps everyone honest: every solution must ladder back to a real outcome. Split each solution into desirability / viability / feasibility / usability assumptions and test the <em style="font-style:italic;">riskiest first</em> — plus <strong>Model-Capability</strong> for anything AI-backed.</p>
+        <p style="font-size:15px;line-height:1.55;color:#7a7263;margin:0;border-left:2px solid var(--accent,#d97757);padding-left:16px;" data-reveal><strong style="color:#1a1712;">JTBD job story —</strong> “When I [situation], I want to [motivation], so I can [outcome].” Frame the struggle, not the feature. The milkshake competes with bananas and boredom, not other shakes.</p>
+      </div>
+      <div data-reveal style="background:#f9f7f2;border:1px solid rgba(26,23,18,.12);border-radius:6px;padding:36px 28px;">
+        <div data-ost style="display:flex;flex-direction:column;align-items:center;gap:0;">
+          <div data-tree-node style="background:#16130e;color:#f0ebe0;border-radius:5px;padding:13px 22px;text-align:center;">
+            <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent,#d97757);">Outcome</div>
+            <div style="font-size:16px;font-weight:600;margin-top:2px;">Activation +12pts</div>
+          </div>
+          <div data-tree-line style="width:2px;height:26px;background:rgba(26,23,18,.25);transform-origin:top;"></div>
+          <div style="display:flex;gap:18px;">
+            <div data-tree-node style="background:#fff;border:1px solid rgba(26,23,18,.2);border-radius:5px;padding:10px 14px;font-size:13.5px;font-weight:600;text-align:center;max-width:140px;">Onboarding friction</div>
+            <div data-tree-node style="background:#fff;border:1px solid rgba(26,23,18,.2);border-radius:5px;padding:10px 14px;font-size:13.5px;font-weight:600;text-align:center;max-width:140px;">No early “aha”</div>
+          </div>
+          <div data-tree-line style="width:2px;height:26px;background:rgba(26,23,18,.25);transform-origin:top;"></div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+            <div data-tree-node style="background:rgba(217,119,87,.1);border:1px solid var(--accent,#d97757);border-radius:5px;padding:8px 12px;font-size:12.5px;text-align:center;">Guided setup</div>
+            <div data-tree-node style="background:rgba(217,119,87,.1);border:1px solid var(--accent,#d97757);border-radius:5px;padding:8px 12px;font-size:12.5px;text-align:center;">Sample data</div>
+            <div data-tree-node style="background:rgba(217,119,87,.1);border:1px solid var(--accent,#d97757);border-radius:5px;padding:8px 12px;font-size:12.5px;text-align:center;">Templates</div>
+          </div>
+          <div data-tree-line style="width:2px;height:22px;background:rgba(26,23,18,.25);transform-origin:top;"></div>
+          <div data-tree-node style="font-family:'Space Mono',monospace;font-size:11px;color:#7a7263;border:1px dashed rgba(26,23,18,.3);border-radius:4px;padding:7px 12px;">test riskiest assumption first ↑</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FEATURED: METRICS / AARRR ===================== -->
+  <section data-screen-label="Metrics" style="background:#16130e;color:#f0ebe0;padding:104px 0;">
+    <div style="max-width:1180px;margin:0 auto;padding:0 32px;">
+      <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#d97757);margin-bottom:18px;" data-reveal>Deep dive · Metrics</div>
+      <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,4.4vw,52px);line-height:1.04;letter-spacing:-.015em;margin:0 0 16px;max-width:22ch;" data-reveal>Pick one metric. Ship its guardrail.</h2>
+      <p style="max-width:60ch;font-size:18px;line-height:1.6;color:rgba(240,235,224,.66);margin:0 0 56px;" data-reveal>Every metric is a <em style="font-style:italic;">bet</em> that it tracks real value. Name how it could rise while value falls — then pair it with a guardrail that must not degrade.</p>
+
+      <div class="g2" style="display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;">
+        <div>
+          <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(240,235,224,.5);margin-bottom:18px;" data-reveal>AARRR · Pirate Metrics — trace problems upstream</div>
+          <div data-funnel style="display:flex;flex-direction:column;gap:9px;">
+            <div data-funnel-row style="display:flex;align-items:center;gap:14px;">
+              <span style="width:108px;font-size:14px;font-weight:600;flex-shrink:0;">Acquisition</span>
+              <div data-bar style="height:34px;width:100%;background:rgba(240,235,224,.18);border-radius:3px;transform-origin:left center;"></div>
+            </div>
+            <div data-funnel-row style="display:flex;align-items:center;gap:14px;">
+              <span style="width:108px;font-size:14px;font-weight:600;flex-shrink:0;">Activation</span>
+              <div data-bar style="height:34px;width:82%;background:var(--accent,#d97757);border-radius:3px;transform-origin:left center;"></div>
+            </div>
+            <div data-funnel-row style="display:flex;align-items:center;gap:14px;">
+              <span style="width:108px;font-size:14px;font-weight:600;flex-shrink:0;">Retention</span>
+              <div data-bar style="height:34px;width:58%;background:var(--accent,#d97757);border-radius:3px;transform-origin:left center;"></div>
+            </div>
+            <div data-funnel-row style="display:flex;align-items:center;gap:14px;">
+              <span style="width:108px;font-size:14px;font-weight:600;flex-shrink:0;">Revenue</span>
+              <div data-bar style="height:34px;width:40%;background:var(--accent,#d97757);border-radius:3px;transform-origin:left center;"></div>
+            </div>
+            <div data-funnel-row style="display:flex;align-items:center;gap:14px;">
+              <span style="width:108px;font-size:14px;font-weight:600;flex-shrink:0;">Referral</span>
+              <div data-bar style="height:34px;width:26%;background:var(--accent,#d97757);border-radius:3px;transform-origin:left center;"></div>
+            </div>
+          </div>
+          <p style="margin:22px 0 0;font-size:14.5px;line-height:1.55;color:rgba(240,235,224,.6);">A retention problem is often an <strong>Activation / time-to-value</strong> miss upstream — not an Acquisition one. <strong>Quick Ratio</strong> = (new + resurrected) ÷ churned; below 1, you leak faster than you fill.</p>
+        </div>
+        <div data-stagger style="display:flex;flex-direction:column;gap:18px;">
+          <div style="border:1px solid rgba(240,235,224,.16);border-radius:5px;padding:22px;">
+            <div style="font-family:'Newsreader',serif;font-style:italic;font-size:21px;margin-bottom:6px;">North Star</div>
+            <p style="margin:0;font-size:14.5px;line-height:1.5;color:rgba(240,235,224,.66);">One value-delivery metric + 3–5 movable inputs. A proxy, not the goal — re-validate quarterly that it still tracks retention/revenue. Marketplaces need <strong>two</strong> (supply + demand).</p>
+          </div>
+          <div style="border:1px solid rgba(240,235,224,.16);border-radius:5px;padding:22px;">
+            <div style="font-family:'Newsreader',serif;font-style:italic;font-size:21px;margin-bottom:6px;">Vanity vs value</div>
+            <p style="margin:0;font-size:14.5px;line-height:1.5;color:rgba(240,235,224,.66);">Signups, downloads, MAU are vanity. Activation “aha” within ~7 days and week-4 cohort retention are value. Goodhart: a North Star that becomes the target gets gamed.</p>
+          </div>
+          <div style="border:1px solid rgba(240,235,224,.16);border-radius:5px;padding:22px;">
+            <div style="font-family:'Newsreader',serif;font-style:italic;font-size:21px;margin-bottom:6px;">Outcome, not event (AI)</div>
+            <p style="margin:0;font-size:14.5px;line-height:1.5;color:rgba(240,235,224,.66);">When the product acts for the user, count <strong>jobs completed</strong>, not events fired. “Messages sent” rewards a chatbot that loops.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FEATURED: AI-NATIVE / EVALS ===================== -->
+  <section data-screen-label="AI-Native" style="max-width:1180px;margin:0 auto;padding:110px 32px;">
+    <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#d97757);margin-bottom:18px;" data-reveal>Deep dive · AI-Native PM</div>
+    <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,4.4vw,52px);line-height:1.04;letter-spacing:-.015em;margin:0 0 16px;max-width:24ch;" data-reveal>When building is cheap, proving it <em style="font-style:italic;">works</em> becomes the job.</h2>
+    <p style="max-width:62ch;font-size:18px;line-height:1.6;color:#56503f;margin:0 0 56px;" data-reveal>For any LLM-backed feature, the eval suite <em style="font-style:italic;">is</em> the spec. Vibe-checks don't survive production. “Evals are the new PRD.”</p>
+
+    <div class="g2" style="display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center;">
+      <div data-evalloop style="position:relative;width:340px;height:340px;max-width:100%;margin:0 auto;">
+        <div data-eval-ring style="position:absolute;inset:18%;border:2px dashed rgba(26,23,18,.2);border-radius:50%;"></div>
+        <div data-eval-node style="position:absolute;top:0;left:50%;transform:translateX(-50%);background:#16130e;color:#f0ebe0;border-radius:6px;padding:14px 20px;text-align:center;width:150px;">
+          <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--accent,#d97757);letter-spacing:.1em;">01</div>
+          <div style="font-size:15px;font-weight:600;margin-top:2px;">Analyze</div>
+          <div style="font-size:11.5px;color:rgba(240,235,224,.6);margin-top:3px;line-height:1.3;">read ~100 real traces, code failures</div>
+        </div>
+        <div data-eval-node style="position:absolute;bottom:6%;right:0;background:#16130e;color:#f0ebe0;border-radius:6px;padding:14px 20px;text-align:center;width:150px;">
+          <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--accent,#d97757);letter-spacing:.1em;">02</div>
+          <div style="font-size:15px;font-weight:600;margin-top:2px;">Measure</div>
+          <div style="font-size:11.5px;color:rgba(240,235,224,.6);margin-top:3px;line-height:1.3;">golden set + LLM-as-judge, validated</div>
+        </div>
+        <div data-eval-node style="position:absolute;bottom:6%;left:0;background:#16130e;color:#f0ebe0;border-radius:6px;padding:14px 20px;text-align:center;width:150px;">
+          <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--accent,#d97757);letter-spacing:.1em;">03</div>
+          <div style="font-size:15px;font-weight:600;margin-top:2px;">Improve</div>
+          <div style="font-size:11.5px;color:rgba(240,235,224,.6);margin-top:3px;line-height:1.3;">fix prompt, re-run every change</div>
+        </div>
+      </div>
+      <div data-stagger style="display:flex;flex-direction:column;gap:20px;">
+        <div>
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:23px;margin:0 0 6px;">Error analysis <em style="font-style:italic;">is</em> the job</h3>
+          <p style="margin:0;font-size:15.5px;line-height:1.55;color:#56503f;">~60–80% of dev time is reading traces by hand: open-code the first thing that went wrong, cluster into a named failure taxonomy, build a metric only for the buckets that actually hurt.</p>
+        </div>
+        <div>
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:23px;margin:0 0 6px;">Minimum Viable Quality (Nika)</h3>
+          <p style="margin:0;font-size:15.5px;line-height:1.55;color:#56503f;">Set a bar per feature in three tiers — <strong>do-not-ship</strong> · <strong>acceptable</strong> (ships with human-in-loop) · <strong>delight</strong>. Define a cost-per-inference envelope up front; review failure modes weekly.</p>
+        </div>
+        <div>
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:23px;margin:0 0 6px;">Name the mode: generative vs agentic</h3>
+          <p style="margin:0;font-size:15.5px;line-height:1.55;color:#56503f;">Generative produces an artifact a human reviews → score the output. Agentic takes multi-step actions → add trajectory + tool-call evals. Misclassifying agentic as generative is the root of “the demo worked but it loops in prod.”</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FEATURED: POSITIONING + PRICING ===================== -->
+  <section data-screen-label="GTM and Pricing" style="background:#ebe6db;padding:100px 0;border-top:1px solid rgba(26,23,18,.1);">
+    <div style="max-width:1180px;margin:0 auto;padding:0 32px;">
+      <div class="g2" style="display:grid;grid-template-columns:1fr 1fr;gap:60px;">
+        <!-- positioning -->
+        <div>
+          <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#d97757);margin-bottom:18px;" data-reveal>GTM · Positioning</div>
+          <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(26px,3.4vw,38px);line-height:1.06;margin:0 0 22px;" data-reveal>Derive the five components <em style="font-style:italic;">in order</em>.</h2>
+          <div data-stagger style="display:flex;flex-direction:column;gap:0;">
+            <div data-poscard style="display:flex;gap:16px;padding:15px 0;border-top:1px solid rgba(26,23,18,.14);">
+              <span style="font-family:'Space Mono',monospace;font-size:13px;color:var(--accent,#d97757);flex-shrink:0;width:18px;">1</span>
+              <div><strong style="font-size:16px;">Competitive alternatives</strong><p style="margin:3px 0 0;font-size:14px;color:#56503f;line-height:1.45;">What they'd use if you didn't exist. “Do nothing” is usually your #1 competitor.</p></div>
+            </div>
+            <div data-poscard style="display:flex;gap:16px;padding:15px 0;border-top:1px solid rgba(26,23,18,.14);">
+              <span style="font-family:'Space Mono',monospace;font-size:13px;color:var(--accent,#d97757);flex-shrink:0;width:18px;">2</span>
+              <div><strong style="font-size:16px;">Unique attributes</strong><p style="margin:3px 0 0;font-size:14px;color:#56503f;line-height:1.45;">Capabilities only you have versus those alternatives.</p></div>
+            </div>
+            <div data-poscard style="display:flex;gap:16px;padding:15px 0;border-top:1px solid rgba(26,23,18,.14);">
+              <span style="font-family:'Space Mono',monospace;font-size:13px;color:var(--accent,#d97757);flex-shrink:0;width:18px;">3</span>
+              <div><strong style="font-size:16px;">Value</strong><p style="margin:3px 0 0;font-size:14px;color:#56503f;line-height:1.45;">Run the “so what?” test on each attribute until you reach value worth paying for.</p></div>
+            </div>
+            <div data-poscard style="display:flex;gap:16px;padding:15px 0;border-top:1px solid rgba(26,23,18,.14);">
+              <span style="font-family:'Space Mono',monospace;font-size:13px;color:var(--accent,#d97757);flex-shrink:0;width:18px;">4</span>
+              <div><strong style="font-size:16px;">Target market</strong><p style="margin:3px 0 0;font-size:14px;color:#56503f;line-height:1.45;">The segment that cares <em>most</em> — best-fit, not all-addressable.</p></div>
+            </div>
+            <div data-poscard style="display:flex;gap:16px;padding:15px 0;border-top:1px solid rgba(26,23,18,.14);border-bottom:1px solid rgba(26,23,18,.14);">
+              <span style="font-family:'Space Mono',monospace;font-size:13px;color:var(--accent,#d97757);flex-shrink:0;width:18px;">5</span>
+              <div><strong style="font-size:16px;">Market category</strong><p style="margin:3px 0 0;font-size:14px;color:#56503f;line-height:1.45;">The frame of reference that makes the value obvious.</p></div>
+            </div>
+          </div>
+          <p style="margin:20px 0 0;font-size:14px;line-height:1.5;color:#7a7263;"><strong style="color:#1a1712;">Substitutability test:</strong> swap your name for a competitor's. If the statement still reads true, it isn't differentiated.</p>
+        </div>
+        <!-- pricing -->
+        <div>
+          <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#d97757);margin-bottom:18px;" data-reveal>Pricing</div>
+          <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(26px,3.4vw,38px);line-height:1.06;margin:0 0 22px;" data-reveal>Price is a product decision — gate the build.</h2>
+          <p style="font-size:15.5px;line-height:1.6;color:#56503f;margin:0 0 24px;" data-reveal>Have the willingness-to-pay conversation <em style="font-style:italic;">during</em> design (Ramanujam). No WTP evidence, no spec. Capture ~10–25% of the value you quantify.</p>
+
+          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#7a7263;margin-bottom:12px;" data-reveal>Feature triage</div>
+          <div data-stagger style="display:flex;flex-direction:column;gap:10px;margin-bottom:26px;">
+            <div style="background:#f4f1ea;border:1px solid var(--accent,#d97757);border-radius:4px;padding:14px 16px;"><strong style="color:var(--accent,#d97757);">Leaders</strong> <span style="font-size:14px;color:#56503f;">— few high-WTP differentiators you lead and charge for.</span></div>
+            <div style="background:#f4f1ea;border:1px solid rgba(26,23,18,.16);border-radius:4px;padding:14px 16px;"><strong>Fillers</strong> <span style="font-size:14px;color:#56503f;">— modest-WTP nice-to-haves.</span></div>
+            <div style="background:#f4f1ea;border:1px solid rgba(26,23,18,.16);border-radius:4px;padding:14px 16px;"><strong>Killers</strong> <span style="font-size:14px;color:#56503f;">— reduce WTP if charged. Never bundle a Leader with a Killer.</span></div>
+          </div>
+
+          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#7a7263;margin-bottom:12px;" data-reveal>Good / Better / Best · ratio ~1 : 2.5–3 : 5</div>
+          <div data-stagger style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;align-items:end;">
+            <div style="background:#f4f1ea;border:1px solid rgba(26,23,18,.16);border-radius:4px;padding:16px 12px;text-align:center;height:88px;display:flex;flex-direction:column;justify-content:flex-end;"><div style="font-family:'Newsreader',serif;font-size:19px;">Good</div></div>
+            <div style="background:#f4f1ea;border:1px solid var(--accent,#d97757);border-radius:4px;padding:16px 12px;text-align:center;height:118px;display:flex;flex-direction:column;justify-content:flex-end;"><div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--accent,#d97757);">center-stage · most&#8209;popular</div><div style="font-family:'Newsreader',serif;font-size:19px;">Better</div></div>
+            <div style="background:#16130e;color:#f0ebe0;border-radius:4px;padding:16px 12px;text-align:center;height:152px;display:flex;flex-direction:column;justify-content:flex-end;"><div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--accent,#d97757);">anchor</div><div style="font-family:'Newsreader',serif;font-size:19px;">Best</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONFIDENCE + BLIND SPOT ===================== -->
+  <section data-screen-label="Confidence" style="max-width:1180px;margin:0 auto;padding:110px 32px;">
+    <div class="g2" style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;">
+      <div>
+        <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#d97757);margin-bottom:18px;" data-reveal>Calibration</div>
+        <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(28px,3.8vw,44px);line-height:1.05;margin:0 0 18px;" data-reveal>Every recommendation wears its confidence.</h2>
+        <p style="font-size:16.5px;line-height:1.6;color:#56503f;margin:0 0 34px;" data-reveal>A synthesis inherits its weakest link — if any critical sub-recommendation is LOW, the whole thing caps at MODERATE.</p>
+        <div data-stagger style="display:flex;flex-direction:column;gap:14px;">
+          <sc-for list="{{ confidence }}" as="c" hint-placeholder-count="5">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px;">
+                <span style="font-family:'Space Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.05em;">{{ c.label }}</span>
+                <span style="font-size:13px;color:#7a7263;max-width:30ch;text-align:right;">{{ c.note }}</span>
+              </div>
+              <div style="height:8px;background:rgba(26,23,18,.1);border-radius:4px;overflow:hidden;">
+                <div data-bar style="height:100%;width:{{ c.pct }};background:var(--accent,#d97757);transform-origin:left center;border-radius:4px;"></div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div data-reveal style="background:#16130e;color:#f0ebe0;border-radius:6px;padding:36px 32px;">
+        <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:26px;margin:0 0 8px;">The blind-spot check</h3>
+        <p style="margin:0 0 26px;font-size:15px;line-height:1.55;color:rgba(240,235,224,.62);">Match the ritual to the stakes.</p>
+        <div style="border:1px solid var(--accent,#d97757);background:rgba(217,119,87,.08);border-radius:5px;padding:20px;margin-bottom:18px;">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent,#d97757);margin-bottom:12px;">High-stakes / irreversible — run all five</div>
+          <ol style="margin:0;padding-left:18px;font-size:14.5px;line-height:1.7;color:rgba(240,235,224,.85);">
+            <li>Framework bias + the alternative you didn't pick</li>
+            <li>Context bias (stage / size / industry assumed)</li>
+            <li>Survivorship — are the examples outlier winners?</li>
+            <li>Recency — durable, or trend-driven?</li>
+            <li>A <em style="font-style:italic;">substantive</em> contrarian view, not a token caveat</li>
+          </ol>
+        </div>
+        <div style="border:1px solid rgba(240,235,224,.18);border-radius:5px;padding:18px;">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,235,224,.5);margin-bottom:10px;">Routine / reversible — one line</div>
+          <p style="margin:0;font-size:14px;line-height:1.5;color:rgba(240,235,224,.75);font-family:'Space Mono',monospace;">Blind spot: [load-bearing assumption] · counter-take: [strongest opposing view]</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SENIORITY LADDER ===================== -->
+  <section data-screen-label="Seniority" style="background:#ebe6db;padding:100px 0;border-top:1px solid rgba(26,23,18,.1);border-bottom:1px solid rgba(26,23,18,.1);">
+    <div style="max-width:1180px;margin:0 auto;padding:0 32px;">
+      <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#d97757);margin-bottom:18px;" data-reveal>Calibrate to the level</div>
+      <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(28px,4vw,46px);line-height:1.05;margin:0 0 16px;max-width:24ch;" data-reveal>The most common failure is answering one altitude off.</h2>
+      <p style="max-width:60ch;font-size:17px;line-height:1.6;color:#56503f;margin:0 0 50px;" data-reveal>Autonomy tracks <em style="font-style:italic;">earned trust</em>, not title (Evans' Ask → Suggest → Just-Do-It). A strategy question met with execution tactics — or the reverse — is the tell.</p>
+      <div data-ladder class="g5" style="display:grid;grid-template-columns:repeat(5,1fr);gap:14px;align-items:end;">
+        <sc-for list="{{ seniority }}" as="s" hint-placeholder-count="5">
+          <div data-ladder-step style="background:#f4f1ea;border:1px solid rgba(26,23,18,.14);border-radius:5px;padding:20px 16px;height:{{ s.h }};display:flex;flex-direction:column;justify-content:flex-end;transform-origin:bottom;">
+            <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--accent,#d97757);letter-spacing:.06em;margin-bottom:6px;">{{ s.mode }}</div>
+            <div style="font-family:'Newsreader',serif;font-size:20px;font-weight:500;margin-bottom:8px;">{{ s.level }}</div>
+            <p style="margin:0;font-size:13px;line-height:1.45;color:#56503f;">{{ s.focus }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ANTI-PATTERNS ===================== -->
+  <section data-screen-label="Anti-patterns" style="max-width:1180px;margin:0 auto;padding:110px 32px 70px;">
+    <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#d97757);margin-bottom:18px;" data-reveal>Anti-patterns</div>
+    <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,4.4vw,52px);line-height:1.04;letter-spacing:-.015em;margin:0 0 50px;max-width:20ch;" data-reveal>The tell, and the fix.</h2>
+    <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:1px;background:rgba(26,23,18,.12);border:1px solid rgba(26,23,18,.12);">
+      <sc-for list="{{ antipatterns }}" as="a" hint-placeholder-count="8">
+        <div style="background:#f4f1ea;padding:24px 22px;">
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:21px;margin:0 0 10px;">{{ a.name }}</h3>
+          <p style="margin:0 0 8px;font-size:14px;line-height:1.5;color:#7a7263;"><span style="font-family:'Space Mono',monospace;font-size:11px;color:var(--accent,#d97757);">TELL&nbsp;</span>{{ a.tell }}</p>
+          <p style="margin:0;font-size:14px;line-height:1.5;color:#1a1712;"><span style="font-family:'Space Mono',monospace;font-size:11px;color:#2f6f5e;">FIX&nbsp;&nbsp;</span>{{ a.fix }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===================== TEMPLATES ===================== -->
+  <section data-screen-label="Templates" style="background:#16130e;color:#f0ebe0;padding:104px 0;">
+    <div style="max-width:1180px;margin:0 auto;padding:0 32px;">
+      <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#d97757);margin-bottom:18px;" data-reveal>Templates</div>
+      <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,4.4vw,52px);line-height:1.04;letter-spacing:-.015em;margin:0 0 16px;max-width:24ch;" data-reveal>Pick one, fill it, lead with the decision — not the structure.</h2>
+      <p style="max-width:58ch;font-size:18px;line-height:1.6;color:rgba(240,235,224,.66);margin:0 0 50px;" data-reveal>The moment a feature is LLM-powered, switch to the AI-codegen PRD.</p>
+      <div data-stagger style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:20px;">
+        <sc-for list="{{ templates }}" as="t" hint-placeholder-count="4">
+          <div style="border:1px solid rgba(240,235,224,.16);border-radius:5px;padding:26px;">
+            <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:23px;margin:0 0 6px;">{{ t.name }}</h3>
+            <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--accent,#d97757);margin-bottom:14px;">{{ t.src }}</div>
+            <p style="margin:0;font-size:14.5px;line-height:1.55;color:rgba(240,235,224,.7);">{{ t.body }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PRO MODULES ===================== -->
+  <section data-screen-label="PRO modules" style="background:#16130e;color:#f0ebe0;padding:104px 0;">
+    <div style="max-width:1180px;margin:0 auto;padding:0 32px;">
+      <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#d97757);margin-bottom:18px;" data-reveal>Going deeper · PRO modules</div>
+      <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,4.4vw,52px);line-height:1.04;letter-spacing:-.015em;margin:0 0 16px;max-width:24ch;" data-reveal>The worked depth, on demand.</h2>
+      <p style="max-width:62ch;font-size:18px;line-height:1.6;color:rgba(240,235,224,.66);margin:0 0 40px;" data-reveal>The base file is self-sufficient; seven PRO modules carry the curated, worked treatment. Pick one to expand its deeper frameworks.</p>
+
+      <div data-stagger style="display:flex;flex-wrap:wrap;gap:9px;margin-bottom:38px;">
+        <sc-for list="{{ proModules }}" as="m" hint-placeholder-count="7">
+          <button type="button" data-key="{{ m.key }}" onClick="{{ pickPro }}" style="font-family:'Space Mono',monospace;font-size:13px;background:rgba(240,235,224,.05);color:#f0ebe0;border:1px solid rgba(240,235,224,.18);border-radius:999px;padding:10px 17px;cursor:pointer;transition:all .18s ease;" style-hover="border-color:rgba(240,235,224,.45);">{{ m.title }}</button>
+        </sc-for>
+      </div>
+
+      <div style="border-top:1px solid rgba(240,235,224,.14);padding-top:34px;">
+        <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,235,224,.5);margin-bottom:26px;">Load PRO · {{ activePro.title }} <span style="color:var(--accent,#d97757);">— {{ activePro.tag }}</span></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:1px;background:rgba(240,235,224,.12);border:1px solid rgba(240,235,224,.12);">
+          <sc-for list="{{ activePro.frameworks }}" as="fw" hint-placeholder-count="5">
+            <div style="background:#16130e;padding:26px 24px;">
+              <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:21px;margin:0 0 10px;">{{ fw.name }}</h3>
+              <p style="margin:0;font-size:14.5px;line-height:1.6;color:rgba(240,235,224,.7);">{{ fw.body }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TOOLKIT ===================== -->
+  <section data-screen-label="Toolkit" style="max-width:1180px;margin:0 auto;padding:110px 32px 80px;">
+    <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#d97757);margin-bottom:18px;" data-reveal>The toolkit</div>
+    <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,4.4vw,52px);line-height:1.04;letter-spacing:-.015em;margin:0 0 16px;max-width:22ch;" data-reveal>Don't just read it — run it.</h2>
+    <p style="max-width:58ch;font-size:18px;line-height:1.6;color:#56503f;margin:0 0 50px;" data-reveal>Three live tools, plus the RICE scorer and router above. Everything updates as you type.</p>
+
+    <!-- Positioning builder -->
+    <div data-reveal style="background:#f9f7f2;border:1px solid rgba(26,23,18,.12);border-radius:6px;padding:34px;margin-bottom:24px;">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:6px;">
+        <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:26px;margin:0;">Positioning statement builder</h3>
+        <span style="font-family:'Space Mono',monospace;font-size:12px;color:var(--accent,#d97757);">Dunford → Moore</span>
+      </div>
+      <p style="margin:0 0 24px;font-size:15px;line-height:1.55;color:#56503f;max-width:72ch;">Fill the five components in order; the one-line statement assembles live. Then run the substitutability test — swap a rival's name in; if it still reads true, it isn't differentiated yet.</p>
+      <div class="g2" style="display:grid;grid-template-columns:1fr 1fr;gap:14px 28px;margin-bottom:26px;">
+        <sc-for list="{{ positFields }}" as="pf" hint-placeholder-count="6">
+          <label style="display:block;">
+            <span style="display:block;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#7a7263;margin-bottom:5px;">{{ pf.label }} <span style="color:#a89e8c;text-transform:none;letter-spacing:0;">· {{ pf.hint }}</span></span>
+            <input type="text" value="{{ posit[pf.f] }}" data-field="{{ pf.f }}" onInput="{{ positInput }}" style="width:100%;background:#fff;border:1px solid rgba(26,23,18,.18);border-radius:4px;padding:9px 11px;font-family:'Hanken Grotesk',sans-serif;font-size:14.5px;color:#1a1712;">
+          </label>
+        </sc-for>
+      </div>
+      <div style="background:#16130e;border-radius:5px;padding:24px 26px;">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,235,224,.45);margin-bottom:10px;">Your positioning statement</div>
+        <p style="margin:0;font-family:'Newsreader',serif;font-size:21px;line-height:1.5;color:#f0ebe0;">{{ positStatement }}</p>
+      </div>
+    </div>
+
+    <div class="g2" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+      <!-- Pricing / EVC -->
+      <div data-reveal style="background:#16130e;color:#f0ebe0;border-radius:6px;padding:32px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px;margin-bottom:4px;">
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:24px;margin:0;">Pricing &amp; EVC</h3>
+          <span style="font-family:'Space Mono',monospace;font-size:11px;color:var(--accent,#d97757);">alt + diff − switch</span>
+        </div>
+        <p style="margin:0 0 22px;font-size:14px;line-height:1.55;color:rgba(240,235,224,.6);">Capture ~10–25% of the value you quantify; tiers at ~1 : 2.75 : 5.</p>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:22px;">
+          <label style="display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14px;">Next-best alternative ($)<input type="number" value="{{ price.alt }}" data-field="alt" onInput="{{ priceInput }}" style="width:120px;background:rgba(240,235,224,.06);border:1px solid rgba(240,235,224,.18);border-radius:4px;color:#f0ebe0;font-family:'Space Mono',monospace;font-size:14px;padding:8px 10px;"></label>
+          <label style="display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14px;">Value of your differentiation ($)<input type="number" value="{{ price.diff }}" data-field="diff" onInput="{{ priceInput }}" style="width:120px;background:rgba(240,235,224,.06);border:1px solid rgba(240,235,224,.18);border-radius:4px;color:#f0ebe0;font-family:'Space Mono',monospace;font-size:14px;padding:8px 10px;"></label>
+          <label style="display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14px;">Switching cost ($)<input type="number" value="{{ price.sw }}" data-field="sw" onInput="{{ priceInput }}" style="width:120px;background:rgba(240,235,224,.06);border:1px solid rgba(240,235,224,.18);border-radius:4px;color:#f0ebe0;font-family:'Space Mono',monospace;font-size:14px;padding:8px 10px;"></label>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid rgba(240,235,224,.12);padding-top:14px;margin-bottom:6px;">
+          <span style="font-size:13px;color:rgba(240,235,224,.6);">Value ceiling (EVC)</span><span style="font-family:'Space Mono',monospace;font-size:18px;font-weight:700;">{{ evc }}</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px;">
+          <span style="font-size:13px;color:rgba(240,235,224,.6);">Capture band</span><span style="font-family:'Space Mono',monospace;font-size:15px;color:var(--accent,#d97757);">{{ capBand }}</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+          <div style="border:1px solid rgba(240,235,224,.16);border-radius:4px;padding:12px;text-align:center;"><div style="font-family:'Space Mono',monospace;font-size:10px;color:rgba(240,235,224,.5);">GOOD</div><div style="font-family:'Newsreader',serif;font-size:18px;margin-top:2px;">{{ good }}</div></div>
+          <div style="border:1px solid rgba(240,235,224,.16);border-radius:4px;padding:12px;text-align:center;"><div style="font-family:'Space Mono',monospace;font-size:10px;color:rgba(240,235,224,.5);">BETTER</div><div style="font-family:'Newsreader',serif;font-size:18px;margin-top:2px;">{{ better }}</div></div>
+          <div style="border:1px solid var(--accent,#d97757);background:rgba(217,119,87,.1);border-radius:4px;padding:12px;text-align:center;"><div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--accent,#d97757);">BEST</div><div style="font-family:'Newsreader',serif;font-size:18px;margin-top:2px;">{{ best }}</div></div>
+        </div>
+      </div>
+
+      <!-- Blind-spot tagger -->
+      <div data-reveal style="background:#16130e;color:#f0ebe0;border-radius:6px;padding:32px;">
+        <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:24px;margin:0 0 4px;">Blind-spot tagger</h3>
+        <p style="margin:0 0 18px;font-size:14px;line-height:1.55;color:rgba(240,235,224,.6);">Match the ritual to the stakes; generate a decision tag.</p>
+        <div style="display:flex;gap:8px;margin-bottom:18px;">
+          <button type="button" data-val="high" onClick="{{ setStakes }}" style="flex:1;font-family:'Space Mono',monospace;font-size:12px;padding:9px;border-radius:5px;cursor:pointer;border:1px solid {{ bsHighBorder }};background:{{ bsHighBg }};color:#f0ebe0;">High-stakes</button>
+          <button type="button" data-val="low" onClick="{{ setStakes }}" style="flex:1;font-family:'Space Mono',monospace;font-size:12px;padding:9px;border-radius:5px;cursor:pointer;border:1px solid {{ bsLowBorder }};background:{{ bsLowBg }};color:#f0ebe0;">Routine</button>
+        </div>
+        <sc-if value="{{ bsHigh }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:18px;">
+            <sc-for list="{{ bsItems }}" as="bi" hint-placeholder-count="5">
+              <button type="button" data-k="{{ bi.k }}" onClick="{{ toggleCheck }}" style="display:flex;gap:11px;align-items:flex-start;text-align:left;background:none;border:0;cursor:pointer;padding:0;color:#f0ebe0;">
+                <span style="flex-shrink:0;width:18px;height:18px;border-radius:4px;border:1px solid rgba(240,235,224,.35);display:flex;align-items:center;justify-content:center;font-size:12px;background:{{ bi.bg }};color:{{ bi.tick }};margin-top:1px;">{{ bi.mark }}</span>
+                <span style="font-size:13.5px;line-height:1.4;color:rgba(240,235,224,.82);">{{ bi.label }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </sc-if>
+        <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:rgba(240,235,224,.45);margin-bottom:8px;">Confidence</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;">
+          <sc-for list="{{ confChips }}" as="c" hint-placeholder-count="5">
+            <button type="button" data-val="{{ c.val }}" onClick="{{ setConf }}" style="font-family:'Space Mono',monospace;font-size:11px;padding:6px 10px;border-radius:999px;cursor:pointer;border:1px solid {{ c.border }};background:{{ c.bg }};color:#f0ebe0;">{{ c.val }}</button>
+          </sc-for>
+        </div>
+        <div style="border-top:1px solid rgba(240,235,224,.12);padding-top:16px;">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,235,224,.45);margin-bottom:8px;">Decision tag</div>
+          <p style="margin:0;font-size:14px;line-height:1.55;color:#f0ebe0;">{{ bsTag }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SOURCES + CTA ===================== -->
+  <sc-if value="{{ showSources }}" hint-placeholder-val="{{ true }}">
+  <section data-screen-label="Sources" style="max-width:1180px;margin:0 auto;padding:96px 32px 40px;">
+    <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent,#d97757);margin-bottom:18px;" data-reveal>Grounded in named sources</div>
+    <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(26px,3.4vw,40px);line-height:1.06;margin:0 0 16px;max-width:30ch;" data-reveal>Every recommendation traces to a published practitioner — cited inline, never invented.</h2>
+    <p data-reveal style="max-width:74ch;font-size:16px;line-height:1.7;color:#56503f;margin:0 0 14px;">Cagan / SVPG · Teresa Torres · Melissa Perri · Shreyas Doshi · Clayton Christensen · April Dunford · Geoffrey Moore · Madhavan Ramanujam · Patrick Campbell · Ron Kohavi · Lenny Rachitsky · Marily Nika · Hamel Husain &amp; Shreya Shankar · Aman Khan · Lafley &amp; Martin · Larry Keeley (Doblin) · Wheelwright &amp; Clark · Nicholas Carr · Elena Verna · Ethan Evans · Oji &amp; Ezinne Udezue · Matthew Skelton &amp; Manuel Pais · John Cutler · Rich Mironov · Tony Ulwick · Reinertsen / SAFe · Noriaki Kano · Gary Klein · Nadler &amp; Tushman · Robert Cooper · and more.</p>
+  </section>
+  </sc-if>
+
+  <section data-screen-label="CTA" style="background:#16130e;color:#f0ebe0;padding:80px 0 96px;border-top:1px solid rgba(240,235,224,.12);">
+    <div style="max-width:1180px;margin:0 auto;padding:0 32px;text-align:center;">
+      <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(30px,5vw,58px);line-height:1.02;letter-spacing:-.02em;margin:0 0 20px;" data-reveal>One free file. No install.</h2>
+      <p style="max-width:48ch;margin:0 auto 34px;font-size:18px;line-height:1.55;color:rgba(240,235,224,.66);" data-reveal>Copy <span style="font-family:'Space Mono',monospace;color:var(--accent,#d97757);">SKILL.md</span>, paste it as your first message, and ask your product question normally.</p>
+      <div data-reveal style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+        <a href="https://github.com/gtm-k/product-skill" target="_blank" rel="noopener" style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;font-weight:600;background:var(--accent,#d97757);color:#fff;text-decoration:none;border-radius:999px;padding:14px 28px;display:inline-block;">View the repository →</a>
+        <a href="https://github.com/gtm-k/product-skill/blob/main/SKILL.md" target="_blank" rel="noopener" style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;font-weight:600;background:transparent;color:#f0ebe0;text-decoration:none;border:1px solid rgba(240,235,224,.3);border-radius:999px;padding:14px 28px;display:inline-block;">Read SKILL.md</a>
+      </div>
+      <p style="margin:46px 0 0;font-family:'Space Mono',monospace;font-size:12px;color:rgba(240,235,224,.4);letter-spacing:.08em;">product-skill v4.2 · CC BY-SA 4.0 · built by Gowtham Kethineedi · a visual field guide</p>
+    </div>
+  </section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#7c3aed&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#d97757&quot;,&quot;#2f6f5e&quot;,&quot;#3b5bdb&quot;,&quot;#7c3aed&quot;,&quot;#c99a3a&quot;],&quot;section&quot;:&quot;Look&quot;},&quot;reduceMotion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Motion&quot;},&quot;showSources&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;}}">
+class Component extends DCLogic {
+  state = {
+    route: null,
+    rice: [
+      { name: "A · In-app onboarding", reach: 4000, impact: 2, conf: 90, effort: 3 },
+      { name: "B · Enterprise SSO", reach: 600, impact: 3, conf: 70, effort: 8 },
+      { name: "C · Shared workspaces", reach: 2500, impact: 2, conf: 80, effort: 4 },
+      { name: "D · Dark mode", reach: 1800, impact: 0.5, conf: 95, effort: 2 }
+    ],
+    proModule: "strategy",
+    posit: { target: "mid-market RevOps teams", need: "trust their forecast", category: "revenue-intelligence platform", benefit: "the board number is defensible every quarter", alt: "spreadsheets and gut feel", diff: "we reconcile CRM and billing in real time" },
+    price: { alt: 1200, diff: 900, sw: 250 },
+    bsStakes: "high",
+    bsChecks: { framework: false, context: false, survivorship: false, recency: false, contrarian: false },
+    confLevel: "MODERATE"
+  };
+
+  riceInput = (e) => {
+    const idx = parseInt(e.target.dataset.row, 10);
+    const field = e.target.dataset.field;
+    const val = parseFloat(e.target.value);
+    this.setState((s) => {
+      const rice = s.rice.map((r, i) => i === idx ? { ...r, [field]: isNaN(val) ? 0 : Math.max(0, val) } : r);
+      return { rice };
+    });
+  };
+
+  pickRouter = (e) => {
+    const key = e.currentTarget.dataset.key;
+    this.setState({ route: key });
+  };
+
+  goTo = (e) => {
+    const t = e.currentTarget.dataset.target;
+    const el = document.querySelector('[data-screen-label="' + t + '"]');
+    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + (window.scrollY || document.documentElement.scrollTop || 0) - 6, behavior: "smooth" });
+  };
+
+  pickPro = (e) => { this.setState({ proModule: e.currentTarget.dataset.key }); };
+
+  positInput = (e) => {
+    const f = e.target.dataset.field, v = e.target.value;
+    this.setState((s) => ({ posit: Object.assign({}, s.posit, { [f]: v }) }));
+  };
+
+  priceInput = (e) => {
+    const f = e.target.dataset.field, v = parseFloat(e.target.value);
+    this.setState((s) => ({ price: Object.assign({}, s.price, { [f]: isNaN(v) ? 0 : Math.max(0, v) }) }));
+  };
+
+  setStakes = (e) => { this.setState({ bsStakes: e.currentTarget.dataset.val }); };
+  toggleCheck = (e) => {
+    const k = e.currentTarget.dataset.k;
+    this.setState((s) => ({ bsChecks: Object.assign({}, s.bsChecks, { [k]: !s.bsChecks[k] }) }));
+  };
+  setConf = (e) => { this.setState({ confLevel: e.currentTarget.dataset.val }); };
+
+  initNav() {
+    const labels = ["Hero", "Operating loop", "Router", "Disciplines", "Prioritization", "Discovery", "Metrics", "AI-Native", "GTM and Pricing", "Confidence", "Anti-patterns", "Templates", "PRO modules", "Toolkit", "CTA"];
+    const fill = document.querySelector("[data-progress-fill]");
+    const items = Array.from(document.querySelectorAll(".nav-item"));
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const st = window.scrollY || document.documentElement.scrollTop || 0;
+      const h = (document.documentElement.scrollHeight - window.innerHeight) || 1;
+      if (fill) fill.style.width = Math.max(0, Math.min(100, (st / h) * 100)) + "%";
+      const mark = window.innerHeight * 0.4;
+      let active = labels[0];
+      labels.forEach((l) => { const el = document.querySelector('[data-screen-label="' + l + '"]'); if (el && el.getBoundingClientRect().top <= mark) active = l; });
+      items.forEach((it) => { it.classList.toggle("active", it.dataset.target === active); });
+    };
+    window.addEventListener("scroll", () => { if (!ticking) { ticking = true; (window.requestAnimationFrame ? requestAnimationFrame(update) : setTimeout(update, 16)); } }, { passive: true });
+    update();
+  }
+
+  componentDidMount() {
+    this._tries = 0;
+    try { document.documentElement.lang = "en"; } catch (e) {}
+    this.initGSAP();
+    this.initNav();
+  }
+
+  initGSAP() {
+    const g = window.gsap;
+    if (!g) {
+      if (this._tries++ > 80) return;
+      return setTimeout(() => this.initGSAP(), 60);
+    }
+    if (this.props.reduceMotion) return; // content visible by default
+    const q = (s) => Array.from(document.querySelectorAll(s));
+    document.documentElement.classList.add("anim");
+
+    // IntersectionObserver-driven reveal with a synchronous failsafe:
+    // the failsafe force-applies the end state even if the rAF ticker is
+    // frozen (backgrounded tab / headless capture), so content never stays blank.
+    const make = (el, fromV, toV, dur, delay) => {
+      dur = dur || 0.7; delay = delay || 0;
+      const clean = Object.assign({}, toV); delete clean.ease;
+      g.set(el, fromV);
+      const tw = g.to(el, Object.assign({ duration: dur, delay: delay, ease: "power3.out", paused: true }, toV));
+      const io = new IntersectionObserver((es) => {
+        es.forEach((e) => {
+          if (e.isIntersecting) {
+            io.disconnect();
+            tw.play();
+            setTimeout(() => g.set(el, clean), (dur + delay) * 1000 + 700);
+          }
+        });
+      }, { threshold: 0.06, rootMargin: "0px 0px -6% 0px" });
+      io.observe(el);
+    };
+
+    const makeStagger = (grp, fromV, toV, dur, stag) => {
+      dur = dur || 0.6; stag = stag || 0.07;
+      const kids = Array.from(grp.children);
+      if (!kids.length) return;
+      g.set(kids, fromV);
+      const tw = g.to(kids, Object.assign({ duration: dur, ease: "power3.out", stagger: stag, paused: true }, toV));
+      const io = new IntersectionObserver((es) => {
+        es.forEach((e) => {
+          if (e.isIntersecting) {
+            io.disconnect();
+            tw.play();
+            setTimeout(() => g.set(kids, toV), dur * 1000 + kids.length * stag * 1000 + 700);
+          }
+        });
+      }, { threshold: 0.04, rootMargin: "0px 0px -4% 0px" });
+      io.observe(grp);
+    };
+
+    // hero headline lines
+    q("[data-hero-line]").forEach((el, i) => make(el, { yPercent: 115, opacity: 0 }, { yPercent: 0, opacity: 1 }, 0.95, 0.1 + 0.12 * i));
+    // generic reveals (skip those inside a stagger group — handled by makeStagger)
+    q("[data-reveal]").forEach((el) => { if (!el.closest("[data-stagger]")) make(el, { opacity: 0, y: 26 }, { opacity: 1, y: 0 }, 0.75); });
+    // staggered groups
+    q("[data-stagger]").forEach((grp) => makeStagger(grp, { opacity: 0, y: 30 }, { opacity: 1, y: 0 }));
+    // operating loop
+    q("[data-loopsteps]").forEach((grp) => makeStagger(grp, { opacity: 0, x: -22 }, { opacity: 1, x: 0 }, 0.6, 0.12));
+    q("[data-grow-line]").forEach((el) => make(el, { scaleY: 0 }, { scaleY: 1, transformOrigin: "top center" }, 1.1));
+    // metric / confidence bars
+    q("[data-bar]").forEach((el) => make(el, { scaleX: 0 }, { scaleX: 1, transformOrigin: "left center" }, 1.05));
+    // discovery tree
+    q("[data-tree-node]").forEach((el, i) => make(el, { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, ease: "back.out(1.6)" }, 0.5, 0.05 * i));
+    q("[data-tree-line]").forEach((el) => make(el, { scaleY: 0 }, { scaleY: 1, transformOrigin: "top center" }, 0.4));
+    // eval loop
+    q("[data-eval-node]").forEach((el, i) => make(el, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, ease: "back.out(1.5)" }, 0.55, 0.12 * i));
+    const ring = document.querySelector("[data-eval-ring]");
+    if (ring) g.to(ring, { rotate: 360, duration: 36, ease: "none", repeat: -1 });
+    // seniority ladder
+    q("[data-ladder]").forEach((grp) => {
+      const kids = Array.from(grp.children);
+      g.set(kids, { scaleY: 0.5, opacity: 0, transformOrigin: "bottom" });
+      const tw = g.to(kids, { scaleY: 1, opacity: 1, duration: 0.6, ease: "power3.out", stagger: 0.09, paused: true });
+      const io = new IntersectionObserver((es) => { es.forEach((e) => { if (e.isIntersecting) { io.disconnect(); tw.play(); setTimeout(() => g.set(kids, { scaleY: 1, opacity: 1 }), 1700); } }); }, { threshold: 0.1 });
+      io.observe(grp);
+    });
+
+    // Sweep: when IntersectionObserver/rAF can't run (backgrounded tab,
+    // headless capture), force the end-state on any still-hidden element that
+    // is in the viewport. In a foreground tab the reveal animations have
+    // already raised opacity past the threshold, so this is a no-op there.
+    const vis = (el, m) => { const r = el.getBoundingClientRect(); const vh = window.innerHeight || 800; return r.top < vh * (m || 1.1) && r.bottom > -60; };
+    const sweep = () => {
+      q("[data-reveal],[data-hero-line],[data-loopstep],[data-tree-node],[data-eval-node]").forEach((el) => { if (vis(el) && parseFloat(getComputedStyle(el).opacity) < 0.04) g.set(el, { opacity: 1, y: 0, x: 0, yPercent: 0, scale: 1 }); });
+      q("[data-stagger]").forEach((grp) => { if (vis(grp)) Array.from(grp.children).forEach((el) => { if (parseFloat(getComputedStyle(el).opacity) < 0.04) g.set(el, { opacity: 1, y: 0, x: 0 }); }); });
+      q("[data-bar]").forEach((el) => { if (vis(el)) g.set(el, { scaleX: 1 }); });
+      q("[data-grow-line],[data-tree-line]").forEach((el) => { if (vis(el)) g.set(el, { scaleY: 1 }); });
+      q("[data-ladder]").forEach((grp) => { if (vis(grp)) Array.from(grp.children).forEach((el) => { if (parseFloat(getComputedStyle(el).opacity) < 0.04) g.set(el, { scaleY: 1, opacity: 1 }); }); });
+    };
+    setTimeout(sweep, 1400);
+    setTimeout(sweep, 3000);
+    window.addEventListener("scroll", () => { clearTimeout(this._sw); this._sw = setTimeout(sweep, 200); }, { passive: true });
+    document.addEventListener("visibilitychange", () => { if (!document.hidden) setTimeout(sweep, 220); });
+  }
+
+  componentDidUpdate(prev) {
+    // recolor accent live when the prop changes
+    const root = document.querySelector("[data-root]");
+  }
+
+  renderVals() {
+    const accent = this.props.accentColor || "#d97757";
+    // apply accent var to root each render (cheap)
+    if (typeof document !== "undefined") {
+      const r = document.querySelector("[data-root]");
+      if (r) r.style.setProperty("--accent", accent);
+    }
+
+    const disciplines = [
+      { key: "strategy", num: "01", title: "Strategy", tagline: "A focused sequence of bets — not a feature list.", blurb: "Strategy is what you say no to. Insights become bets become objectives, never a dated backlog.", frameworks: ["Product Operating Model", "DHM moat", "Playing-to-Win", "GLEe", "Ten Types"] },
+      { key: "discovery", num: "02", title: "Discovery", tagline: "Knowing what to build is the constraint.", blurb: "A weekly habit, run by the trio. Every solution ladders to a real outcome; test the riskiest assumption first.", frameworks: ["Continuous Discovery", "Opportunity Solution Tree", "JTBD", "Product Kata"] },
+      { key: "prioritization", num: "03", title: "Prioritization", tagline: "Match the method to the decision.", blurb: "The selection is the judgment; the arithmetic is canon. Don't run them all.", frameworks: ["RICE", "ICE", "WSJF / CD3", "MoSCoW", "Kano", "LNO"] },
+      { key: "metrics", num: "04", title: "Metrics", tagline: "Pick one metric; ship its guardrail.", blurb: "Every metric is a bet that it tracks real value. Name how it could rise while value falls.", frameworks: ["North Star", "AARRR", "HEART", "Value-driver tree"] },
+      { key: "ai", num: "05", title: "AI-Native PM", tagline: "Prove it works before you ship.", blurb: "For any LLM feature the eval suite is the spec. Error analysis is the job.", frameworks: ["Evals-as-QA", "MVQ", "AIPDL", "Generative vs agentic"] },
+      { key: "gtm", num: "06", title: "GTM", tagline: "Position deliberately; launch to de-risk.", blurb: "Derive the five positioning components in order. Launch is risk reduction, not a date.", frameworks: ["Dunford positioning", "Crossing the Chasm", "JOLT Effect", "Launch de-risk"] },
+      { key: "pricing", num: "07", title: "Pricing", tagline: "Price is a product decision.", blurb: "Have the willingness-to-pay talk during design. No WTP evidence, no spec.", frameworks: ["Price-before-product", "WTP", "EVC", "Leaders/Fillers/Killers"] },
+      { key: "growth", num: "08", title: "Growth & PLG", tagline: "Build loops, not funnels.", blurb: "Hybrid-PLG is the reality at scale. Score accounts, not lone users; set the OEC before launch.", frameworks: ["PLG", "PQA > PQL", "Trustworthy A/B", "Growth loops"] },
+      { key: "org", num: "09", title: "Org & Roadmap", tagline: "Empowered teams, not feature teams.", blurb: "Leaders own objectives, teams own key results. The roadmap is alignment, not a dated promise.", frameworks: ["Operating Model", "Team Topologies", "OKR anti-cascade", "Now/Next/Later"] },
+      { key: "career", num: "10", title: "Career", tagline: "Bet on judgment, not headcount.", blurb: "Coach to the gap, not the title. As AI collapses build cost, the durable premium is deciding what's worth building.", frameworks: ["Skills matrix", "Magic Loop", "Super-IC"] }
+    ];
+
+    const routerTasks = [
+      { label: "Decide what to build next", key: "prioritization" },
+      { label: "Write a PRD", key: "templates" },
+      { label: "Pick a success metric", key: "metrics" },
+      { label: "Ship an AI feature", key: "ai" },
+      { label: "Sharpen positioning", key: "gtm" },
+      { label: "Set or defend pricing", key: "pricing" },
+      { label: "Talk to customers", key: "discovery" },
+      { label: "Plan a launch", key: "gtm" },
+      { label: "Set a strategy", key: "strategy" },
+      { label: "Run an experiment", key: "growth" },
+      { label: "Level up my career", key: "career" }
+    ];
+
+    const routeMap = {};
+    disciplines.forEach((d) => { routeMap[d.key] = d; });
+    routeMap.templates = { key: "templates", num: "T", title: "Templates", tagline: "Pick one, fill it, lead with the decision.", blurb: "10-section PRD (Yien / Rachitsky) for standard features; switch to the 6-section AI-codegen PRD the moment a feature is LLM-powered — specify WHAT, never HOW.", frameworks: ["10-section PRD", "AI-codegen PRD", "Strategy doc", "OKR fill-in"] };
+    const routeCard = this.state.route ? routeMap[this.state.route] : null;
+
+    const priMethods = [
+      { name: "RICE", formula: "Reach × Impact × Confidence ÷ Effort", use: "50+ comparable items and reach data exists.", watch: "Confidence is an honest discount; Effort punishes big bets; kill anything <50%." },
+      { name: "ICE", formula: "Impact × Confidence × Ease", use: "fast growth-experiment screening, early stage.", watch: "gut Impact inflates — re-score after results land." },
+      { name: "WSJF / CD3", formula: "Cost-of-delay ÷ Duration", use: "portfolio sequencing, time-sensitive bets.", watch: "the value is forcing the cost-of-delay conversation, not the digit." },
+      { name: "MoSCoW", formula: "Must / Should / Could / Won't", use: "fixed-scope release, stakeholder alignment.", watch: "everything becomes a Must — cap Musts at ~60% of capacity." },
+      { name: "Kano", formula: "Delight vs baseline", use: "categorizing delighters vs expected features.", watch: "delighters decay into expected — re-survey." },
+      { name: "Opportunity scoring", formula: "Importance + (Importance − Satisfaction) · ODI", use: "JTBD-aligned, finding underserved needs.", watch: "high-importance + high-satisfaction is a trap, not a target." },
+      { name: "LNO", formula: "Leverage / Neutral / Overhead", use: "your own task triage, not features.", watch: "over-polishing N/O work is the real leak." }
+    ];
+
+    const rice = this.state.rice.map((r) => {
+      const score = r.effort > 0 ? (r.reach * r.impact * (r.conf / 100)) / r.effort : 0;
+      return { ...r, raw: score };
+    });
+    const ranked = [...rice].sort((a, b) => b.raw - a.raw);
+    const riceRows = rice.map((r, i) => {
+      const rank = ranked.indexOf(ranked.find((x) => x.name === r.name));
+      let verdict = "park", rankColor = "rgba(240,235,224,.4)";
+      if (r.conf < 50) { verdict = "kill · <50%"; rankColor = "#c98a6a"; }
+      else if (rank === 0) { verdict = "ship ✓"; rankColor = "#7fbf9e"; }
+      else if (rank === 1) { verdict = "ship ✓"; rankColor = "#7fbf9e"; }
+      else if (rank === 2) { verdict = "defer"; rankColor = "rgba(240,235,224,.6)"; }
+      const disp = r.raw >= 100 ? Math.round(r.raw) : Math.round(r.raw * 10) / 10;
+      return { idx: i, name: r.name, reach: r.reach, impact: r.impact, conf: r.conf, effort: r.effort, score: disp, verdict, rankColor };
+    });
+
+    const confidence = [
+      { label: "VERY HIGH", pct: "100%", note: "converging sources — act with conviction" },
+      { label: "HIGH", pct: "80%", note: "strong consensus or solid research" },
+      { label: "MODERATE", pct: "60%", note: "context-dependent — validate first" },
+      { label: "LOW", pct: "40%", note: "emerging / single-source — a hypothesis" },
+      { label: "SPECULATIVE", pct: "20%", note: "novel synthesis — needs your validation" }
+    ];
+
+    const seniority = [
+      { level: "APM", mode: "Ask → Suggest", focus: "Execution craft; become the team's customer + data expert.", h: "180px" },
+      { level: "PM (IC)", mode: "Suggest", focus: "Discovery + area strategy; ship options with tradeoffs.", h: "210px" },
+      { level: "Senior / Group", mode: "Suggest → Do", focus: "Product strategy, mentoring; execution pain = strategy debt.", h: "246px" },
+      { level: "Director / VP", mode: "Just-Do-It", focus: "Org design, portfolio, exec alignment, OKR cadence.", h: "284px" },
+      { level: "CPO / Head", mode: "Sets the frame", focus: "Vision-as-strategy, P&L ownership; portfolio allocation.", h: "326px" }
+    ];
+
+    const antipatterns = [
+      { name: "Feature Factory", tell: "success = features shipped, not outcomes.", fix: "a problem + an outcome metric per item." },
+      { name: "HiPPO", tell: "highest-paid opinion wins the call.", fix: "frameworks + experiments, not authority." },
+      { name: "Analysis paralysis", tell: "endless research, no decision.", fix: "time-boxed discovery + a sufficient-confidence bar." },
+      { name: "Solution-first", tell: "a spec before the problem is framed.", fix: "a JTBD problem statement first." },
+      { name: "Metric vanity", tell: "signups and downloads in the headline.", fix: "North Star + activation / retention." },
+      { name: "Demo-theater", tell: "a happy-path AI demo treated as shippable.", fix: "gate on eval pass-rate + real traces." },
+      { name: "Build-every-idea", tell: "cheap generation floods the backlog.", fix: "raise the bar, not the throughput." },
+      { name: "Shipping-as-vanity", tell: "ship-count is the headline metric.", fix: "learning velocity > shipping velocity." }
+    ];
+
+    const templates = [
+      { name: "10-section PRD", src: "Kevin Yien (Square) · Lenny Rachitsky", body: "TL;DR + decision → problem → goals → Non-Goals → JTBD → UX → narrative → metrics + guardrails → tech + open questions (tagged) → milestones. Non-Goals and open questions are mandatory." },
+      { name: "PRD for AI codegen", src: "ChatPRD · 6-section", body: "Specify WHAT, never HOW: behavior, inputs/outputs, constraints, testable acceptance criteria. Attach the golden-prompt set + eval rubric — that IS the spec." },
+      { name: "Strategy doc", src: "Strategy Blocks · Janakiraman", body: "Winning-aspiration headline → ~3 pillars + non-goals → ~3 HMW questions → 4-dim bet rubric (incl. defensibility) → 5-phase timeline. Frame each bet as a hypothesis." },
+      { name: "OKR fill-in", src: "Cutler · Perri", body: "Inspiring objective · KR1–3 with baseline → target + confidence · a guardrail-metrics slot · key initiatives are the bets, NOT the results. Decouple grading from comp." }
+    ];
+
+    const proModules = [
+      { key: "strategy", title: "Strategy", tag: "platforms · profit migration · roadmapping", frameworks: [
+        { name: "Multi-sided platforms", body: "Diagnose the network-effect TYPE: cross-side (more A pulls B — the engine) vs same-side (often negative — sellers want fewer rivals). Price the SIDES, not the product: a subsidy side (≤ cost, builds volume) and a money side (pays for access). Winner-take-all only with high multi-homing cost + strong cross-side effects + no niche demand. Watch envelopment — an adjacent platform sharing your users bundles your function for free." },
+        { name: "Integrate vs modularize → profit migration", body: "Set architecture on customer satisfaction, not core-competence. Underserved functionality → interdependent/integrated, own the stack. Overserved → modular, disintegrate. Outsource only the overserved interfaces — never the still-performance-limiting one, because that's exactly where attractive profit migrates as a stage overshoots and commoditizes." },
+        { name: "Ten Types of Innovation (Doblin)", body: "Product features are the easiest leg to copy. Map yourself AND competitors across all ten types — Configuration / Offering / Experience — to find errors of omission, then combine several into one integrated play (each leg copyable, the combination not). Top innovators integrate ~2× the types." },
+        { name: "Aggregate Project Plan (Wheelwright & Clark)", body: "Classify every project by product-change × process-change into derivative / platform / breakthrough / R&D / partnership. Set a desired type-mix % against capacity and hold a capacity cushion — never commit 100%; slack absorbs crises. Over-commitment is what causes cascading delays." },
+        { name: "Layered roadmap (Phaal / IfM Cambridge)", body: "Under Now/Next/Later sits one timeline linking three layers: Market know-WHY (drivers) → Product know-WHAT (form/function) → Technology know-HOW (capabilities). Read it top-down (market pull) AND bottom-up (tech push). Most roadmaps draw only the product layer." }
+      ]},
+      { key: "pricing", title: "Pricing", tag: "WTP · EVC · tiering · failure types", frameworks: [
+        { name: "WTP toolkit", body: "Beyond the 3-question script, read the distribution with Van Westendorp PSM, Gabor-Granger, or conjoint / MaxDiff. A bimodal spread = two segments hiding inside one average — find the wall, then tier to it." },
+        { name: "Economic Value to Customer (EVC)", body: "Value ceiling = price of next-best alternative + value of your differentiation − switching cost. Capture ~10–25% of the value you quantify. Good/Better/Best at a rough 1 : 2.5–3 : 5 ratio using anchoring + center-stage psychology." },
+        { name: "Leaders / Fillers / Killers (Ramanujam)", body: "Leaders = few high-WTP differentiators you lead and charge for. Fillers = modest-WTP nice-to-haves. Killers = features that reduce WTP if charged (table-stakes expected free; bloat). Never bundle a Leader with a Killer." },
+        { name: "4 monetization failure types", body: "Feature shock (over-stuffed, value buried) · Minivation (too timid, underprices) · Hidden gem (latent blockbuster never shipped) · Undead (launched but nobody wanted it). Diagnose which you're risking pre-launch." },
+        { name: "Outcome & AI pricing", body: "As agents replace seats, per-seat logic breaks → price on outcomes or consumption. Caveat: token cost is variable COGS — pure outcome pricing inverts margin when model cost > price captured. Hold a cost envelope per call." }
+      ]},
+      { key: "ai-evals", title: "AI & Evals", tag: "error analysis · judge validation · metric stack", frameworks: [
+        { name: "Error-analysis loop", body: "~60–80% of dev time is reading traces. Open-code the first failure in ~100 traces → axial-code into a named taxonomy with counts (stop at saturation, ~20 traces with no new category) → build a metric only for the buckets that hurt → 10–20 fresh traces/week." },
+        { name: "Golden set + LLM-as-judge", body: "Curated labeled inputs with pass/fail; promote every production failure into a permanent regression case. Validate the judge: binary pass/fail + written critique (NOT a 1–5 Likert), aligned to human labels on a held-out set; report TPR and TNR; prefer a panel." },
+        { name: "Three Gulfs (Shankar & Husain)", body: "Comprehension (you can't read all your data) · Specification (intent → prompt is lossy) · Generalization (works on seen inputs, fails on unseen). Evals attack all three." },
+        { name: "Three-tier AI metric stack", body: "Quality (eval pass-rate + failure counts) → Experience (task success, no-retry, escalation) → Unit economics (cost per successful task, latency, margin). A quality win that doesn't move experience is vanity; an experience win that blows the cost envelope isn't a win." },
+        { name: "Shadow-mode rollout", body: "Before flag → internal → live-cohort, run the AI silently alongside humans to gather at-scale eval data at zero customer risk. Raise confidence thresholds across versions — early adopters tolerate imperfection; mainstream expects near-perfection." }
+      ]},
+      { key: "positioning", title: "Positioning & GTM", tag: "Dunford · JOLT · launch de-risk", frameworks: [
+        { name: "Dunford 5-component derivation", body: "Competitive alternatives (include do-nothing) → unique attributes → value (via the 'so what?' test) → target market (cares most) → market category. Each component feeds the next." },
+        { name: "Validation battery", body: "Customer-mirror (does a real customer describe the value your way?) · substitutability (swap a rival's name — still true? then it isn't differentiated) · durability (survives the next 2–3 competitor moves?). When buyer ≠ user, you may need two statements." },
+        { name: "3 market-frame strategies", body: "Head-to-head (win an existing market) · big-fish-small-pond (dominate a sub-segment) · create-a-new-game (new category — highest cost, you build the demand). Sell what's on the truck — position what ships today, not the roadmap." },
+        { name: "The JOLT Effect (Dixon & McKenna)", body: "40–60% of B2B deals die in no-decision — the enemy is customer indecision / fear-of-messing-up, not a rival. Judge the indecision, offer a recommendation, limit the options, take risk off the table." },
+        { name: "Launch = risk reduction (Perri)", body: "De-risk three questions before committing: valuable, adoptable, viable. Feature-flag a cohort first; ship a cohesive bundle as one narrative. Measure adoption and retained value, not the press hit." }
+      ]},
+      { key: "growth", title: "Growth & Experiments", tag: "OEC · SRM · loops · PQA", frameworks: [
+        { name: "OEC + guardrails (Kohavi)", body: "One Overall Evaluation Criterion (a short-term proxy that predicts long-term value) + guardrail metrics that must not regress (latency, crashes, unsubs). Choose metrics first — never after peeking." },
+        { name: "SRM-first + Twyman's Law", body: "Before reading any result, check Sample Ratio Mismatch — a split that deviates from its design is a broken test. Any too-good / surprising result is probably an instrumentation bug; investigate before you celebrate." },
+        { name: "Validity gate before inference", body: "A/A or pre-period balance check + no overlapping confounds (outage, holiday, price change, PR spike) + pre-commit the decision rule before unblinding (win→X / flat→Y / loss→Z). Segment only on static pre-treatment attributes." },
+        { name: "Growth loops > funnels (Verna)", body: "Build loops where output re-feeds input; hybrid-PLG (PLG + sales-led + marketing-led) is the reality at scale. Score Product-Qualified Accounts, not lone-user PQLs — B2B buys at the account level." },
+        { name: "Don't A/B test everything (Raviv)", body: "Skip low-traffic, strategic / irreversible, or un-instrumentable bets — use judgment plus qualitative. State a hypothesis (the causal why), not just a prediction (the what) — the why is the actual learning." }
+      ]},
+      { key: "discovery", title: "Discovery", tag: "interviews · OST · QFD · sharp-problem", frameworks: [
+        { name: "Continuous interviewing (Torres)", body: "Weekly, story-based — 'tell me about the last time you…'. Interview to discover opportunities, never to validate a solution you already picked, and never ask 'what features do you want?'" },
+        { name: "Opportunity Solution Tree", body: "Outcome → opportunities (needs / pains from interviews) → solutions → assumption tests. Keeps the team honest that every solution ladders back to a real outcome." },
+        { name: "Assumption-test ladder", body: "Split a solution into desirability / viability / feasibility / usability — test the riskiest first. Cheapest valid test per category: desirability = fake-door / concierge · usability = 5-user · feasibility = spike · viability = WTP · model-capability (AI) = offline golden-set eval." },
+        { name: "House of Quality / QFD (Hauser & Clausing)", body: "Map customer needs → engineering characteristics; weight by importance and correlation to translate the voice of the customer into measurable specs — a disciplined need → spec bridge." },
+        { name: "Sharp-problem + ≥3× Zone of Benefit (the Udezues)", body: "Build only for a sharp problem — workflow compression AND a visceral 'I need this now.' Be ~3× better on the dimension the customer actually feels, to overcome switching cost and inertia." }
+      ]},
+      { key: "metrics", title: "Metrics", tag: "North Star · value-driver tree · guardrails", frameworks: [
+        { name: "North Star + input tree", body: "One value-delivery metric + 3–5 movable inputs. Re-validate quarterly that it still tracks retention / revenue; pair at least one guardrail (quality / health, sentiment, trust & safety, unit economics, retention)." },
+        { name: "Value-driver tree (L.E.K.)", body: "Decompose enterprise value into operating drivers a team can move — price, volume, mix, cost, retention. Three steps: map → test sensitivity → test controllability. Rank by sensitivity; drop high-impact-but-uncontrollable factors. A KPI must be significant AND controllable." },
+        { name: "Growth accounting", body: "Quick Ratio = (new + resurrected) ÷ churned MAU — below 1 you leak faster than you fill. Vanity (signups / MAU) vs value (activation 'aha' within ~7 days, week-4 cohort retention)." },
+        { name: "Outcome-not-event (agentic AI)", body: "When the product acts for the user, count jobs completed, not events fired. 'Messages sent' rewards a chatbot that loops — measure resolved-without-handoff, task success, time-to-resolution." },
+        { name: "Counting-method discipline", body: "N-day vs rolling vs bracketed retention give different curves — hold the definition fixed across benchmark comparisons and tool migrations, or you'll chase artifacts." }
+      ]}
+    ];
+    const activePro = proModules.find((m) => m.key === this.state.proModule) || proModules[0];
+
+    // --- Positioning builder ---
+    const p = this.state.posit;
+    const positStatement = "For " + (p.target || "[target]") + " who " + (p.need || "[need]") + ", we are a " + (p.category || "[category]") + " that " + (p.benefit || "[benefit]") + ". Unlike " + (p.alt || "[alternative]") + ", " + (p.diff || "[differentiation]") + ".";
+    const positFields = [
+      { f: "target", label: "Target market", hint: "who cares most" },
+      { f: "need", label: "Their need", hint: "the job to be done" },
+      { f: "category", label: "Market category", hint: "frame of reference" },
+      { f: "benefit", label: "Value / benefit", hint: "what it lets them do" },
+      { f: "alt", label: "Competitive alternative", hint: "incl. do-nothing" },
+      { f: "diff", label: "Differentiation", hint: "only-you capability" }
+    ];
+
+    // --- Pricing / EVC calculator ---
+    const pr = this.state.price;
+    const evc = Math.max(0, (pr.alt || 0) + (pr.diff || 0) - (pr.sw || 0));
+    const capLow = Math.round((pr.alt || 0) + 0.10 * (pr.diff || 0));
+    const capHigh = Math.round((pr.alt || 0) + 0.25 * (pr.diff || 0));
+    const good = capLow;
+    const better = Math.round(good * 2.75);
+    const best = Math.round(good * 5);
+    const fmt = (n) => "$" + (Math.round(n) || 0).toLocaleString();
+
+    // --- Blind-spot tagger ---
+    const bsItems = [
+      { k: "framework", label: "Framework bias + the alternative you didn't pick" },
+      { k: "context", label: "Context bias (stage / size / industry assumed)" },
+      { k: "survivorship", label: "Survivorship — are the examples outlier winners?" },
+      { k: "recency", label: "Recency — durable, or trend-driven?" },
+      { k: "contrarian", label: "A substantive contrarian view, not a token caveat" }
+    ];
+    const bsChecked = bsItems.filter((i) => this.state.bsChecks[i.k]).length;
+    const confLevels = ["VERY HIGH", "HIGH", "MODERATE", "LOW", "SPECULATIVE"];
+    const high = this.state.bsStakes === "high";
+    const bsItemsStyled = bsItems.map((i) => {
+      const on = !!this.state.bsChecks[i.k];
+      return { k: i.k, label: i.label, bg: on ? accent : "transparent", tick: on ? "#fff" : "transparent", mark: on ? "✓" : "" };
+    });
+    const bsHighBorder = high ? accent : "rgba(240,235,224,.18)";
+    const bsHighBg = high ? "rgba(240,235,224,.12)" : "rgba(240,235,224,.04)";
+    const bsLowBorder = !high ? accent : "rgba(240,235,224,.18)";
+    const bsLowBg = !high ? "rgba(240,235,224,.12)" : "rgba(240,235,224,.04)";
+    const confChips = confLevels.map((v) => ({ val: v, border: v === this.state.confLevel ? accent : "rgba(240,235,224,.18)", bg: v === this.state.confLevel ? "rgba(240,235,224,.12)" : "transparent" }));
+    let bsTag;
+    if (this.state.bsStakes === "high") {
+      bsTag = bsChecked === 5
+        ? "✓ Full check passed · confidence " + this.state.confLevel + " — all five blind spots named, act with the stated conviction."
+        : "⚠ " + bsChecked + "/5 named · confidence caps at MODERATE until all five are addressed, not gestured at.";
+    } else {
+      bsTag = "Blind spot: [most load-bearing assumption] · counter-take: [strongest opposing view] · confidence " + this.state.confLevel + ".";
+    }
+
+    return {
+      goTo: this.goTo,
+      proModules, activePro, pickPro: this.pickPro,
+      positFields, posit: p, positInput: this.positInput, positStatement,
+      price: pr, priceInput: this.priceInput, evc: fmt(evc), capBand: fmt(capLow) + " – " + fmt(capHigh), good: fmt(good), better: fmt(better), best: fmt(best),
+      bsItems: bsItemsStyled, bsHigh: high, toggleCheck: this.toggleCheck, setStakes: this.setStakes, setConf: this.setConf, confChips, bsTag,
+      bsHighBorder, bsHighBg, bsLowBorder, bsLowBg,
+      disciplines, routerTasks, pickRouter: this.pickRouter, routeCard,
+      routeActive: !!routeCard, routeEmpty: !routeCard,
+      priMethods, riceRows, riceInput: this.riceInput,
+      confidence, seniority, antipatterns, templates,
+      showSources: this.props.showSources !== false
+    };
+  }
+}
+</script>
+</body>
+</html>
