@@ -10,6 +10,7 @@
 ![Setup: One file, no install](https://img.shields.io/badge/Setup-One%20file%20·%20no%20install-2563eb)
 ![Works with: ChatGPT · Claude · Gemini](https://img.shields.io/badge/Works%20with-ChatGPT%20·%20Claude%20·%20Gemini-7c3aed)
 ![Skill level: If you can paste, you can use it](https://img.shields.io/badge/If%20you%20can%20paste%2C%20you%20can%20use%20it-f59e0b)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21136453.svg)](https://doi.org/10.5281/zenodo.21136453)
 
 ---
 
