@@ -1,0 +1,24 @@
+# Lets GitHub render a "Cite this repository" button and feeds Zenodo at release.
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "product-skill — 30+ product-management frameworks as an AI skill"
+abstract: >-
+  A portable AI skill file encoding 30+ product-management frameworks with
+  role-calibrated guidance (APM to CPO), confidence calibration, and built-in
+  blind-spot checks, for use with ChatGPT, Claude, Gemini, and other assistants.
+type: software
+version: "1.0.0"
+date-released: "2026-07-02"
+license: CC-BY-SA-4.0
+repository-code: "https://github.com/gtm-k/product-skill"
+authors:
+  - family-names: "Kethineedi"
+    given-names: "Gowtham"
+    orcid: "https://orcid.org/0009-0007-4175-203X"
+keywords:
+  - product management
+  - AI skill
+  - product frameworks
+  - prioritization
+  - product strategy
+  - large language models
